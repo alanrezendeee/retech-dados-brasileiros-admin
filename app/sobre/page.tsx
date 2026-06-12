@@ -105,7 +105,15 @@ export default function SobrePage() {
                   Alan Rezende
                 </h3>
                 <p className="text-sm mb-4" style={{ color: '#00e676' }}>
-                  Fundador & CEO — The Retech
+                  Fundador & CEO —{' '}
+                  <a
+                    href="https://theretech.com.br"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-2 hover:opacity-80 transition-opacity"
+                  >
+                    The Retech
+                  </a>
                 </p>
                 <p className="text-white/50 leading-relaxed mb-4">
                   Engenheiro de software e arquiteto de sistemas com mais de 10
@@ -191,8 +199,17 @@ export default function SobrePage() {
             Um produto da The Retech
           </h3>
           <p className="text-white/40 max-w-xl mx-auto mb-6">
-            O RetechHub faz parte do portfólio de produtos SaaS da The Retech —
-            empresa especializada em software sob medida, IA e automação.
+            O RetechHub faz parte do portfólio de produtos SaaS da{' '}
+            <a
+              href="https://theretech.com.br"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors"
+              style={{ color: '#00e676' }}
+            >
+              The Retech
+            </a>
+            {' '}— empresa especializada em software sob medida, IA e automação.
           </p>
           <a
             href="https://theretech.com.br"
