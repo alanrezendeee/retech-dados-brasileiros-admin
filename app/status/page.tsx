@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { CheckCircle2, Clock, Zap, Shield, AlertCircle } from 'lucide-react';
+import { totalApis, liveApis } from '@/lib/data/apis';
 
 interface HealthStatus {
   status: string;
@@ -119,7 +120,7 @@ export default function StatusPage() {
 
               <Card>
                 <CardContent className="pt-6 text-center">
-                  <div className="text-4xl font-bold text-purple-600 mb-2">4/37</div>
+                  <div className="text-4xl font-bold text-purple-600 mb-2">{liveApis}/{totalApis}</div>
                   <div className="text-sm text-slate-600">APIs Disponíveis</div>
                 </CardContent>
               </Card>

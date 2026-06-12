@@ -1,6 +1,12 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* ─── RetechHub Landing — neon accent ─── */
+@theme inline {
+  --color-neon: #00e676;
+  --color-neon-dim: #00c853;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -145,4 +151,19 @@
 
 .animate-accordion-up {
   animation: accordion-up 0.2s ease-out;
+}
+
+/* ─── Marquee ─── */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }

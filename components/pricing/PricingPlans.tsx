@@ -1,8 +1,4 @@
 import Link from 'next/link';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Check } from 'lucide-react';
 
 interface PlanFeature {
   text: string;
@@ -15,18 +11,13 @@ interface PricingPlan {
   description: string;
   price: string | number;
   priceLabel: string;
-  badge?: {
-    text: string;
-    className: string;
-  };
+  badge?: { text: string };
+  badgeHighlight?: boolean;
   features: PlanFeature[];
   buttonText: string;
-  buttonVariant?: 'default' | 'outline';
-  buttonClassName?: string;
   buttonDisabled?: boolean;
   buttonHref?: string;
-  cardClassName?: string;
-  iconColor: string;
+  featured?: boolean;
 }
 
 const plans: PricingPlan[] = [
@@ -38,17 +29,14 @@ const plans: PricingPlan[] = [
     priceLabel: '/mês',
     features: [
       { text: '1.000 requests/dia', highlight: true },
-      { text: '4 APIs (CEP, CNPJ, Geografia, Penal)' },
+      { text: 'CEP, CNPJ, Artigos Penais, Geografia e Estados/Municípios' },
       { text: 'Cache 3 camadas' },
       { text: 'Dashboard de uso' },
       { text: 'Documentação completa' },
       { text: 'Suporte via email' },
     ],
     buttonText: 'Começar Grátis',
-    buttonVariant: 'outline',
     buttonHref: '/painel/register',
-    cardClassName: 'border-2 hover:shadow-xl transition-shadow',
-    iconColor: 'text-green-600',
   },
   {
     id: 'pro',
@@ -56,22 +44,17 @@ const plans: PricingPlan[] = [
     description: 'Para aplicações em crescimento',
     price: 'R$ 49',
     priceLabel: '/mês',
-    badge: {
-      text: 'Em Breve',
-      className: 'bg-gradient-to-r from-blue-600 to-purple-600 text-white',
-    },
+    badge: { text: 'Em Breve' },
     features: [
       { text: '10.000 requests/dia', highlight: true },
-      { text: 'Todas as APIs (sem premium)' },
+      { text: 'CEP, CNPJ, Artigos Penais, Geografia e Estados/Municípios' },
+      { text: '+ novas APIs conforme lançamento' },
       { text: 'Cache prioritário' },
       { text: 'Dashboard avançado' },
-      { text: 'Analytics em tempo real' },
       { text: 'Suporte prioritário' },
     ],
     buttonText: 'Em Breve',
     buttonDisabled: true,
-    cardClassName: 'border-2 border-blue-400 hover:shadow-xl transition-shadow relative',
-    iconColor: 'text-blue-600',
   },
   {
     id: 'business',
@@ -79,23 +62,19 @@ const plans: PricingPlan[] = [
     description: 'Para empresas em crescimento',
     price: 'R$ 149',
     priceLabel: '/mês',
-    badge: {
-      text: 'Mais Popular',
-      className: 'bg-gradient-to-r from-purple-600 to-pink-600 text-white',
-    },
+    badge: { text: 'Mais Popular' },
+    badgeHighlight: true,
+    featured: true,
     features: [
       { text: '100.000 requests/dia', highlight: true },
-      { text: 'Todas as APIs + Premium' },
+      { text: 'CEP, CNPJ, Artigos Penais, Geografia e Estados/Municípios' },
+      { text: '+ todas as APIs ao lançar (inclui Premium)' },
       { text: 'Cache Redis L1 prioritário' },
-      { text: 'APIs Premium (NF-e, Boletos, etc)' },
       { text: 'Suporte WhatsApp prioritário' },
       { text: 'SLA de 99.5%' },
     ],
     buttonText: 'Em Breve',
-    buttonClassName: 'bg-purple-600 hover:bg-purple-700',
     buttonDisabled: true,
-    cardClassName: 'border-4 border-purple-600 shadow-2xl relative hover:shadow-3xl transition-shadow',
-    iconColor: 'text-purple-600',
   },
   {
     id: 'enterprise',
@@ -105,17 +84,14 @@ const plans: PricingPlan[] = [
     priceLabel: 'sob consulta',
     features: [
       { text: 'Requests ilimitados', highlight: true },
-      { text: 'Todas as APIs + Premium' },
+      { text: 'CEP, CNPJ, Artigos Penais, Geografia e Estados/Municípios' },
+      { text: '+ todas as APIs ao lançar (inclui Premium)' },
       { text: 'Infraestrutura dedicada' },
       { text: 'IP whitelisting' },
-      { text: 'Suporte 24/7 dedicado' },
-      { text: 'SLA de 99.9%' },
+      { text: 'SLA de 99.9% + suporte 24/7' },
     ],
     buttonText: 'Falar com Vendas',
-    buttonVariant: 'outline',
     buttonHref: 'mailto:contato@theretech.com.br',
-    cardClassName: 'border-2 border-slate-400 hover:shadow-xl transition-shadow',
-    iconColor: 'text-slate-600',
   },
 ];
 
@@ -124,65 +100,137 @@ interface PricingPlansProps {
 }
 
 export default function PricingPlans({ variant = 'landing' }: PricingPlansProps) {
-  const CheckIcon = variant === 'page' ? Check : null;
+  const isPage = variant === 'page';
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-      {plans.map((plan) => (
-        <Card key={plan.id} className={plan.cardClassName}>
-          {plan.badge && (
-            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-              <Badge className={`${plan.badge.className} px-3 py-1`}>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto">
+      {plans.map((plan) => {
+        const isFeatured = !!plan.featured;
+
+        const cardStyle: React.CSSProperties = {
+          backgroundColor: isPage
+            ? '#0d0d0d'
+            : isFeatured
+            ? 'rgba(0,230,118,0.06)'
+            : '#111',
+          border: isFeatured
+            ? '1px solid rgba(0,230,118,0.3)'
+            : '1px solid rgba(255,255,255,0.08)',
+          borderRadius: '1rem',
+          padding: '1.75rem',
+          position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
+          transition: 'border-color 0.2s',
+        };
+
+        const btn = plan.buttonHref ? (
+          <Link
+            href={plan.buttonHref}
+            className="block w-full text-center text-sm font-bold py-3 rounded-xl transition-all mt-auto"
+            style={
+              isFeatured
+                ? { backgroundColor: '#00e676', color: '#0a0a0a' }
+                : {
+                    border: '1px solid rgba(255,255,255,0.15)',
+                    color: 'rgba(255,255,255,0.7)',
+                  }
+            }
+          >
+            {plan.buttonText}
+          </Link>
+        ) : (
+          <button
+            disabled={plan.buttonDisabled}
+            className="block w-full text-center text-sm font-bold py-3 rounded-xl transition-all mt-auto cursor-not-allowed"
+            style={{
+              border: '1px solid rgba(255,255,255,0.08)',
+              color: 'rgba(255,255,255,0.25)',
+            }}
+          >
+            {plan.buttonText}
+          </button>
+        );
+
+        return (
+          <div key={plan.id} style={cardStyle}>
+            {/* Badge */}
+            {plan.badge && (
+              <span
+                className="absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-bold px-3 py-1 rounded-full"
+                style={
+                  plan.badgeHighlight
+                    ? { backgroundColor: '#00e676', color: '#0a0a0a' }
+                    : {
+                        backgroundColor: '#1a1a1a',
+                        color: 'rgba(255,255,255,0.5)',
+                        border: '1px solid rgba(255,255,255,0.12)',
+                      }
+                }
+              >
                 {plan.badge.text}
-              </Badge>
+              </span>
+            )}
+
+            {/* Header */}
+            <div className="mb-5">
+              <h3
+                className="text-lg font-bold mb-1"
+                style={{ color: isFeatured ? '#00e676' : '#fff' }}
+              >
+                {plan.name}
+              </h3>
+              <p className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>
+                {plan.description}
+              </p>
+              <div className="mt-4">
+                <span className="text-3xl font-black text-white">{plan.price}</span>
+                <span
+                  className="text-sm ml-1"
+                  style={{ color: 'rgba(255,255,255,0.3)' }}
+                >
+                  {plan.priceLabel}
+                </span>
+              </div>
             </div>
-          )}
-          <CardHeader>
-            <CardTitle className="text-xl">{plan.name}</CardTitle>
-            <CardDescription>{plan.description}</CardDescription>
-            <div className="mt-4">
-              <div className="text-3xl font-bold">{plan.price}</div>
-              <div className="text-slate-500 text-sm">{plan.priceLabel}</div>
-            </div>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <ul className="space-y-2 text-sm">
-              {plan.features.map((feature, index) => (
-                <li key={index} className="flex items-start gap-2">
-                  {variant === 'page' && CheckIcon ? (
-                    <CheckIcon className={`w-4 h-4 ${plan.iconColor} flex-shrink-0 mt-0.5`} />
-                  ) : (
-                    <span className={`${plan.iconColor} mt-0.5`}>✓</span>
-                  )}
-                  <span className={feature.highlight ? 'font-semibold' : ''}>
-                    {feature.text}
+
+            {/* Divider */}
+            <div
+              className="mb-5"
+              style={{
+                height: '1px',
+                backgroundColor: 'rgba(255,255,255,0.06)',
+              }}
+            />
+
+            {/* Features */}
+            <ul className="space-y-2.5 mb-6 flex-1">
+              {plan.features.map((f, i) => (
+                <li key={i} className="flex items-start gap-2.5 text-sm">
+                  <span
+                    className="shrink-0 mt-0.5"
+                    style={{ color: isFeatured ? '#00e676' : 'rgba(255,255,255,0.4)' }}
+                  >
+                    ✓
+                  </span>
+                  <span
+                    style={{
+                      color: f.highlight
+                        ? '#fff'
+                        : 'rgba(255,255,255,0.5)',
+                      fontWeight: f.highlight ? 600 : 400,
+                    }}
+                  >
+                    {f.text}
                   </span>
                 </li>
               ))}
             </ul>
-            {plan.buttonHref ? (
-              <Link href={plan.buttonHref} className="w-full block">
-                <Button
-                  className={`w-full mt-4 ${plan.buttonClassName || ''}`}
-                  variant={plan.buttonVariant}
-                  disabled={plan.buttonDisabled}
-                >
-                  {plan.buttonText}
-                </Button>
-              </Link>
-            ) : (
-              <Button
-                className={`w-full mt-4 ${plan.buttonClassName || ''}`}
-                variant={plan.buttonVariant}
-                disabled={plan.buttonDisabled}
-              >
-                {plan.buttonText}
-              </Button>
-            )}
-          </CardContent>
-        </Card>
-      ))}
+
+            {btn}
+          </div>
+        );
+      })}
     </div>
   );
 }
-

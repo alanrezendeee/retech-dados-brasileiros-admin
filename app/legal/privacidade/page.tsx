@@ -335,7 +335,7 @@ export default function PrivacidadePage() {
               <CardTitle>12. Encarregado de Dados (DPO - LGPD)</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2 text-slate-700">
-              <p><strong>Alan Leite de Rezende</strong></p>
+              <p><strong>Alan Rezende</strong></p>
               <p>DPO (Data Protection Officer) da The Retech</p>
               <p>Email: suporte@theretech.com.br</p>
               <p>WhatsApp: +55 48 99961-6679</p>
@@ -401,7 +401,7 @@ export default function PrivacidadePage() {
               <p>
                 Para dúvidas, solicitações ou reclamações sobre privacidade:
               </p>
-              <p className="mt-4"><strong>Alan Leite de Rezende</strong> (DPO)</p>
+              <p className="mt-4"><strong>Alan Rezende</strong> (DPO)</p>
               <p>The Retech</p>
               <p>Florianópolis, SC, Brasil</p>
               <p>Email: suporte@theretech.com.br</p>

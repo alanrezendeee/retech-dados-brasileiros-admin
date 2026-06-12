@@ -44,7 +44,7 @@ export default function TermosPage() {
             <CardContent className="space-y-4 text-slate-700">
               <p>
                 Ao acessar ou usar a plataforma <strong>The Retech Core</strong> ("Serviço", "Plataforma", "APIs"), 
-                operada por <strong>Alan Leite de Rezende</strong> ("Retech", "nós", "nosso"), você concorda em estar 
+                operada por <strong>Alan Rezende</strong> ("Retech", "nós", "nosso"), você concorda em estar 
                 vinculado a estes Termos de Uso.
               </p>
               <p>
@@ -259,7 +259,7 @@ export default function TermosPage() {
               </p>
               <p>
                 A plataforma Retech Core (código, design, documentação, marca) é propriedade exclusiva de 
-                Alan Leite de Rezende e está protegida por direitos autorais.
+                Alan Rezende e está protegida por direitos autorais.
               </p>
               <p>
                 <strong>8.3. Atribuição</strong>
@@ -385,7 +385,7 @@ export default function TermosPage() {
               <CardTitle>14. Contato para Questões Legais</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2 text-slate-700">
-              <p><strong>Alan Leite de Rezende</strong></p>
+              <p><strong>Alan Rezende</strong></p>
               <p>The Retech</p>
               <p>Florianópolis, SC, Brasil</p>
               <p>Email: suporte@theretech.com.br</p>

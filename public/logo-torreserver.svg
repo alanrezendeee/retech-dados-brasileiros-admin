@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <!-- Ring mask: outer circle minus inner hole -->
+    <mask id="ring-mask">
+      <circle cx="64" cy="64" r="44" fill="white"/>
+      <circle cx="64" cy="64" r="25" fill="black"/>
+    </mask>
+    <!-- Left half clip (leaving ~3px gap at center) -->
+    <clipPath id="clip-left">
+      <rect x="0" y="0" width="62.5" height="128"/>
+    </clipPath>
+    <!-- Right half clip -->
+    <clipPath id="clip-right">
+      <rect x="65.5" y="0" width="62.5" height="128"/>
+    </clipPath>
+  </defs>
+
+  <!-- Left half — dark navy -->
+  <circle cx="64" cy="64" r="44"
+          fill="#0d2233"
+          mask="url(#ring-mask)"
+          clip-path="url(#clip-left)"/>
+
+  <!-- Right half — bright cyan -->
+  <circle cx="64" cy="64" r="44"
+          fill="#1ab3ff"
+          mask="url(#ring-mask)"
+          clip-path="url(#clip-right)"/>
+
+  <!-- Center connector dot — bright cyan -->
+  <circle cx="64" cy="64" r="8" fill="#1ab3ff"/>
+
+  <!-- Thin vertical stem connecting dot to bottom gap (matches original) -->
+  <rect x="62.5" y="72" width="3" height="20" fill="#1ab3ff"/>
+</svg>
