@@ -116,7 +116,7 @@ echo "Logradouro: " . $data['logradouro'];
             </Button>
             <Button asChild size="lg" variant="outline" className="bg-white/10 hover:bg-white/20 text-white border-white/30">
               <Link href="/painel/register">
-                Criar Conta (1.000 requests/dia)
+                Criar Conta (100 requests/dia)
               </Link>
             </Button>
           </div>
@@ -136,7 +136,7 @@ echo "Logradouro: " . $data['logradouro'];
             </div>
             <div>
               <div className="text-3xl font-bold">Grátis</div>
-              <div className="text-sm text-blue-200">1.000 req/dia</div>
+              <div className="text-sm text-blue-200">100 req/dia</div>
             </div>
           </div>
         </div>
@@ -292,7 +292,7 @@ echo "Logradouro: " . $data['logradouro'];
                 </tr>
                 <tr className="border-b bg-slate-50">
                   <td className="p-4 font-semibold">Rate Limiting</td>
-                  <td className="p-4 text-center">1.000/dia (grátis)</td>
+                  <td className="p-4 text-center">100/dia (grátis)</td>
                   <td className="p-4 text-center">Ilimitado</td>
                   <td className="p-4 text-center">Sem controle</td>
                 </tr>
@@ -439,7 +439,7 @@ echo "Logradouro: " . $data['logradouro'];
                     Quantas requisições posso fazer por dia?
                   </AccordionTrigger>
                   <AccordionContent className="text-slate-600">
-                    O plano gratuito oferece <strong>1.000 requisições por dia</strong>. Para volumes maiores, 
+                    O plano gratuito oferece <strong>100 requisições por dia</strong>. Para volumes maiores, 
                     oferecemos planos Pro (10.000/dia) e Business (ilimitado). Entre em contato para planos empresariais.
                   </AccordionContent>
                 </AccordionItem>

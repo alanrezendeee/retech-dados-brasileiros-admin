@@ -368,7 +368,7 @@ export default function ValidarCNPJPage() {
           <CardContent className="p-8 text-center">
             <h2 className="text-2xl font-bold mb-4">Precisa integrar CNPJ no seu sistema?</h2>
             <p className="text-lg mb-6 text-emerald-100">
-              Use nossa API profissional com <strong>1.000 requests/dia gratuitos</strong>
+              Use nossa API profissional com <strong>100 requests/dia gratuitos</strong>
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
               <Button asChild size="lg" variant="secondary">

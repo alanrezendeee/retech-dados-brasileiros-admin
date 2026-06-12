@@ -174,7 +174,7 @@ curl_close($ch);
             </Button>
             <Button asChild size="lg" variant="outline" className="bg-white/10 hover:bg-white/20 text-white border-white/30">
               <Link href="/painel/register">
-                Criar Conta (1.000 requests/dia)
+                Criar Conta (100 requests/dia)
               </Link>
             </Button>
           </div>
@@ -194,7 +194,7 @@ curl_close($ch);
             </div>
             <div>
               <div className="text-3xl font-bold">Grátis</div>
-              <div className="text-sm text-red-200">1.000 req/dia</div>
+              <div className="text-sm text-red-200">100 req/dia</div>
             </div>
           </div>
         </div>

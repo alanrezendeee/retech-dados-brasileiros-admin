@@ -246,7 +246,7 @@ export default function ContatoPage() {
                 <CardTitle className="text-lg">Posso testar antes de assinar?</CardTitle>
               </CardHeader>
               <CardContent className="text-slate-600">
-                Com certeza! O plano Free oferece 1.000 requests/dia para sempre, sem cartão de crédito.
+                Com certeza! O plano Free oferece 100 requests/dia para sempre, sem cartão de crédito.
               </CardContent>
             </Card>
 

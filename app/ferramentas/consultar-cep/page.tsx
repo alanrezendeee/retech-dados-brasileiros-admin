@@ -132,7 +132,7 @@ export default function ConsultarCEPPage() {
     },
     {
       question: "Preciso de API Key?",
-      answer: "Não! Esta é uma ferramenta pública e gratuita. Se você precisa integrar CEP no seu sistema, confira nossa API com 1.000 requests/dia grátis."
+      answer: "Não! Esta é uma ferramenta pública e gratuita. Se você precisa integrar CEP no seu sistema, confira nossa API com 100 requests/dia grátis."
     }
   ];
 
@@ -334,7 +334,7 @@ export default function ConsultarCEPPage() {
           <CardContent className="p-8 text-center">
             <h2 className="text-2xl font-bold mb-4">Precisa integrar CEP no seu sistema?</h2>
             <p className="text-lg mb-6 text-indigo-100">
-              Use nossa API profissional com <strong>1.000 requests/dia gratuitos</strong>
+              Use nossa API profissional com <strong>100 requests/dia gratuitos</strong>
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
               <Button asChild size="lg" variant="secondary">
@@ -376,7 +376,7 @@ export default function ConsultarCEPPage() {
           <ul className="list-disc list-inside text-slate-600 space-y-2 mb-4">
             <li>Cache inteligente em 3 camadas para máxima velocidade</li>
             <li>Fallback automático entre ViaCEP e Brasil API</li>
-            <li>1.000 requests gratuitos por dia</li>
+            <li>100 requests gratuitos por dia</li>
             <li>Documentação completa com exemplos em JavaScript, Python e PHP</li>
             <li>Suporte para integração REST simples</li>
           </ul>        </div>

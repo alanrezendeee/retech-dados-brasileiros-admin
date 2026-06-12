@@ -196,7 +196,7 @@ export default function ConsultarPenalPage() {
     },
     {
       question: "Preciso de API Key?",
-      answer: "Não! Esta é uma ferramenta pública e gratuita. Se você precisa integrar artigos penais no seu sistema, confira nossa API com 1.000 requests/dia grátis."
+      answer: "Não! Esta é uma ferramenta pública e gratuita. Se você precisa integrar artigos penais no seu sistema, confira nossa API com 100 requests/dia grátis."
     }
   ];
 
@@ -616,7 +616,7 @@ export default function ConsultarPenalPage() {
           <CardContent className="p-8 text-center">
             <h2 className="text-2xl font-bold mb-4">Precisa integrar artigos penais no seu sistema?</h2>
             <p className="text-lg mb-6 text-red-100">
-              Use nossa API profissional com <strong>1.000 requests/dia gratuitos</strong>
+              Use nossa API profissional com <strong>100 requests/dia gratuitos</strong>
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
               <Button asChild size="lg" variant="outline" className="bg-white/10 hover:bg-white/20 text-white border-white/30">
@@ -662,7 +662,7 @@ export default function ConsultarPenalPage() {
             <li>Cache permanente no Redis para dados fixos</li>
             <li>122 artigos de crimes que podem levar à prisão, de 10 legislações (CP, Maria da Penha, Desarmamento, LCP, ECA, CTB, CDC e Leis Especiais), incluindo formas qualificadas e agravadas</li>
             <li>Busca por texto, código, tipo e legislação</li>
-            <li>1.000 requests gratuitos por dia</li>
+            <li>100 requests gratuitos por dia</li>
             <li>Documentação completa com exemplos em JavaScript, Python e PHP</li>
             <li>Perfeito para autocomplete e componentes de busca</li>
           </ul>

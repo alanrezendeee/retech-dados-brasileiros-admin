@@ -74,7 +74,7 @@ export default function PrecosPage() {
             <span style={{ color: '#00e676' }}>Escale quando precisar.</span>
           </h1>
           <p className="text-lg text-white/50 max-w-xl mx-auto">
-            Sem cartão de crédito. Sem contratos. Sem surpresas. 1.000
+            Sem cartão de crédito. Sem contratos. Sem surpresas. 100
             requests/dia grátis para sempre.
           </p>
         </div>

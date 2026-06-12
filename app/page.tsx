@@ -180,7 +180,7 @@ export default function HomePage() {
             {[
               'CEP, CNPJ, CPF e muito mais',
               'Fallback entre 3 fontes de dados',
-              '1.000 requests/dia grátis',
+              '100 requests/dia grátis',
               'Sem cartão de crédito',
             ].map((item) => (
               <li key={item} className="flex items-center gap-1.5">
@@ -218,7 +218,7 @@ export default function HomePage() {
             {[
               { value: String(totalApis), label: 'APIs Planejadas' },
               { value: '~160ms', label: 'Tempo Médio' },
-              { value: '1.000/dia', label: 'Requests Grátis' },
+              { value: '100/dia', label: 'Requests Grátis' },
               { value: 'R$ 0', label: 'Sem cartão' },
             ].map((s) => (
               <div key={s.label} className="text-center px-4">

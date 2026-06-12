@@ -74,8 +74,10 @@ export default function TermosPage() {
                 <strong>Limites por Plano:</strong>
               </p>
               <ul className="list-disc list-inside space-y-1 ml-4">
-                <li><strong>Free:</strong> 1.000 requests/dia, 60 requests/minuto</li>
-                <li><strong>Business:</strong> 50.000 requests/dia, 500 requests/minuto</li>
+                <li><strong>Free:</strong> 100 requests/dia, 5 requests/minuto</li>
+                <li><strong>Starter:</strong> 1.000 requests/dia, 30 requests/minuto</li>
+                <li><strong>Pro:</strong> 10.000 requests/dia, 120 requests/minuto</li>
+                <li><strong>Business:</strong> 100.000 requests/dia, 600 requests/minuto</li>
                 <li><strong>Enterprise:</strong> Customizado conforme necessidade</li>
               </ul>
             </CardContent>

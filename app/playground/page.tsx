@@ -547,7 +547,7 @@ curl -X GET '${apiBaseURL}${endpoint}' \\
           <CardContent className="p-8 text-center">
             <h2 className="text-3xl font-bold mb-4">Gostou do que viu?</h2>
             <p className="text-lg mb-6 text-indigo-100">
-              Crie uma conta grátis e ganhe <strong>1.000 requests/dia</strong> sem cartão de crédito
+              Crie uma conta grátis e ganhe <strong>100 requests/dia</strong> sem cartão de crédito
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
               <Button asChild size="lg" variant="secondary">

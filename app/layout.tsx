@@ -105,7 +105,7 @@ export default function RootLayout({
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "BRL",
-      "description": "Plano gratuito com 1.000 requests/dia"
+      "description": "Plano gratuito com 100 requests/dia"
     },
     "aggregateRating": {
       "@type": "AggregateRating",
