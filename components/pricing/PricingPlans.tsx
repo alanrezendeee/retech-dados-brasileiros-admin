@@ -106,6 +106,8 @@ export default function PricingPlans({ variant = 'landing' }: PricingPlansProps)
 
               <Link
                 href={plan.buttonHref}
+                target={plan.buttonHref.startsWith('http') ? '_blank' : undefined}
+                rel={plan.buttonHref.startsWith('http') ? 'noopener noreferrer' : undefined}
                 className="block w-full text-center text-sm font-bold py-3 rounded-xl transition-all mt-auto"
                 style={
                   isFeatured
@@ -159,6 +161,8 @@ export default function PricingPlans({ variant = 'landing' }: PricingPlansProps)
 
         <Link
           href={enterprisePlan.buttonHref}
+          target="_blank"
+          rel="noopener noreferrer"
           className="shrink-0 text-center text-sm font-bold px-8 py-3 rounded-xl transition-all"
           style={{
             border: '1px solid rgba(255,255,255,0.15)',

@@ -19,7 +19,17 @@ export interface PricingPlan {
   featured?: boolean;
 }
 
-const SALES_MAILTO = 'mailto:contato@theretech.com.br';
+const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
+if (!WHATSAPP_NUMBER) {
+  throw new Error(
+    'NEXT_PUBLIC_WHATSAPP_NUMBER é obrigatória (ex: 5511999999999) — usada nos CTAs de planos pagos'
+  );
+}
+
+const whatsappLink = (plano: string) =>
+  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+    `Olá! Tenho interesse no plano ${plano} do RetechHub.`
+  )}`;
 
 export const plans: PricingPlan[] = [
   {
@@ -57,7 +67,7 @@ export const plans: PricingPlan[] = [
       { text: 'Suporte via email' },
     ],
     buttonText: 'Quero este plano',
-    buttonHref: `${SALES_MAILTO}?subject=Plano%20Starter`,
+    buttonHref: whatsappLink('Starter'),
   },
   {
     id: 'pro',
@@ -74,7 +84,7 @@ export const plans: PricingPlan[] = [
       { text: 'Suporte prioritário' },
     ],
     buttonText: 'Quero este plano',
-    buttonHref: `${SALES_MAILTO}?subject=Plano%20Pro`,
+    buttonHref: whatsappLink('Pro'),
   },
   {
     id: 'business',
@@ -91,7 +101,7 @@ export const plans: PricingPlan[] = [
       { text: 'SLA de 99,5%' },
     ],
     buttonText: 'Quero este plano',
-    buttonHref: `${SALES_MAILTO}?subject=Plano%20Business`,
+    buttonHref: whatsappLink('Business'),
   },
 ];
 
@@ -108,5 +118,5 @@ export const enterprisePlan = {
     'Contrato e faturamento via NF',
   ],
   buttonText: 'Falar com Vendas',
-  buttonHref: `${SALES_MAILTO}?subject=Plano%20Enterprise`,
+  buttonHref: whatsappLink('Enterprise'),
 };

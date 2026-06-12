@@ -16,8 +16,8 @@
 - `featured` → Starter (badge "Mais Popular")
 - CTAs:
   - Free → `/painel/register`
-  - Starter/Pro/Business → `mailto:contato@theretech.com.br?subject=Plano <nome>` (até checkout existir)
-  - Enterprise → `mailto:contato@theretech.com.br?subject=Plano Enterprise`
+  - Starter/Pro/Business/Enterprise → WhatsApp (`https://wa.me/<NEXT_PUBLIC_WHATSAPP_NUMBER>?text=Olá! Tenho interesse no plano <nome> do RetechHub.`), nova aba
+- ENV obrigatória: `NEXT_PUBLIC_WHATSAPP_NUMBER` (DDI+DDD, só dígitos — ex. `5511999999999`). Build falha se ausente (`lib/data/plans.ts` lança erro).
 
 ## Textos atualizados (1.000/dia → 100/dia)
 
