@@ -11,7 +11,7 @@ export const apiCatalog: ApiCatalogItem[] = [
   { name: 'Consulta de CEP', status: 'live', desc: '3 fontes + fallback automático', icon: '📮' },
   { name: 'Busca Reversa de CEP', status: 'live', desc: 'Endereço → CEP direto', icon: '🔍' },
   { name: 'Validação de CNPJ', status: 'live', desc: 'Receita Federal + QSA + CNAEs', icon: '🏢' },
-  { name: 'Artigos Penais', status: 'live', desc: 'CP + LCP — 122 artigos', icon: '⚖️' },
+  { name: 'Artigos Penais', status: 'live', desc: 'CP completo + 35 leis — 2.438 dispositivos', icon: '⚖️' },
   { name: 'Estados e Municípios', status: 'live', desc: 'IBGE — UFs e cidades', icon: '🗺️' },
   { name: 'Validação de Telefone', status: 'soon', desc: 'Operadora + tipo de linha', icon: '📞' },
   { name: 'Cotação de Moedas', status: 'soon', desc: 'Dólar, Euro, Bitcoin', icon: '💵' },
