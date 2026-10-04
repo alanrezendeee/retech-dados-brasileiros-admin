@@ -162,7 +162,7 @@ curl_close($ch);
             API de Artigos Penais
           </h1>
           <p className="text-xl md:text-2xl text-red-100 mb-8 max-w-3xl mx-auto">
-            <strong>122 artigos penais brasileiros</strong> de múltiplas legislações com estrutura hierárquica completa, 
+            <strong>2.438 dispositivos penais brasileiros</strong> (artigos, parágrafos, incisos e alíneas) de <strong>36 legislações</strong> – Código Penal completo e leis especiais – com estrutura hierárquica completa, 
             ideal para <strong>autocomplete</strong> e sistemas jurídicos
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
@@ -181,8 +181,8 @@ curl_close($ch);
           
           <div className="mt-12 grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
             <div>
-              <div className="text-3xl font-bold">122</div>
-              <div className="text-sm text-red-200">artigos disponíveis</div>
+              <div className="text-3xl font-bold">2.438</div>
+              <div className="text-sm text-red-200">dispositivos · 36 legislações</div>
             </div>
             <div>
               <div className="text-3xl font-bold">Cache</div>
@@ -253,7 +253,7 @@ curl_close($ch);
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5" />
-                    <span>122 artigos de crimes que podem levar à prisão</span>
+                    <span>2.438 dispositivos: Código Penal completo + 35 leis especiais</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5" />
@@ -433,7 +433,7 @@ curl_close($ch);
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-slate-600">
-                  Busque artigos por texto completo, código (ex: "121"), tipo (crime/contravenção) 
+                  Busque artigos por texto completo, código (ex: "121"), tipo (crime, contravenção, disposição ou revogado), nível (artigo, parágrafo, inciso ou alínea) 
                   ou legislação (CP, LCP). Perfeito para sistemas de busca jurídica.
                 </p>
               </CardContent>
@@ -492,20 +492,14 @@ curl_close($ch);
                     Quantos artigos estão disponíveis?
                   </AccordionTrigger>
                   <AccordionContent className="text-slate-600">
-                    A API contém <strong>122 artigos penais</strong> de crimes que podem levar à prisão, distribuídos em:
+                    A API contém <strong>2.438 dispositivos penais</strong> de <strong>36 legislações</strong>, organizados em 4 níveis:
                     <ul className="list-disc list-inside mt-2 space-y-1">
-                      <li><strong>Código Penal (CP):</strong> 97 artigos (incluindo homicídio simples, qualificado, feminicídio, culposo, receptação, furto qualificado, roubo qualificado, estelionato qualificado, estupro qualificado, extorsão, sequestro, tráfico de pessoas, violação sexual mediante fraude, importunação sexual, assédio sexual, desacato, ocultação de cadáver, falsa identidade, resistência, favorecimento real)</li>
-                      <li><strong>Estatuto da Criança e do Adolescente (ECA):</strong> 4 artigos</li>
-                      <li><strong>Lei de Contravenções Penais (LCP):</strong> 3 artigos</li>
-                      <li><strong>Lei de Drogas (Lei 11.343/2006):</strong> 2 artigos (tráfico, associação)</li>
-                      <li><strong>Lei Maria da Penha (Lei 11.340/2006):</strong> 2 artigos (violência doméstica e descumprimento de medidas protetivas)</li>
-                      <li><strong>Estatuto do Desarmamento (Lei 10.826/2003):</strong> 3 artigos (posse ilegal, porte ilegal de arma de uso permitido e restrito)</li>
-                      <li><strong>Código de Trânsito Brasileiro (CTB):</strong> 4 artigos</li>
-                      <li><strong>Lei de Crimes Ambientais (Lei 9.605/98):</strong> 5 artigos</li>
-                      <li><strong>Código de Defesa do Consumidor (CDC):</strong> 2 artigos</li>
-                      <li><strong>Lei de Lavagem de Dinheiro (Lei 9.613/98):</strong> 1 artigo</li>
+                      <li><strong>864 artigos</strong> (caput)</li>
+                      <li><strong>761 parágrafos</strong> (qualificadoras, causas de aumento e diminuição, figuras equiparadas, modalidades culposas)</li>
+                      <li><strong>731 incisos</strong> e <strong>82 alíneas</strong></li>
                     </ul>
-                    Todos os artigos incluem identificador único (<code className="bg-slate-100 px-1 rounded">idUnico</code> no formato "LEGISLACAO:CODIGO") para evitar ambiguidade quando o mesmo código aparece em legislações diferentes. Caso precise de artigos específicos que ainda não estejam disponíveis, <strong>entre em contato</strong> e podemos adicionar rapidamente.
+                    Por tipo: <strong>1.700 crimes</strong>, <strong>82 contravenções</strong>, 601 disposições gerais (Parte Geral do CP, imunidades, definições, ação penal) e 55 artigos revogados mantidos para consulta histórica. Use o filtro <code className="bg-slate-100 px-1 rounded">nivel=artigo</code> para obter apenas os artigos (caput).
+                    Todos os dispositivos incluem identificador único (<code className="bg-slate-100 px-1 rounded">idUnico</code> no formato "LEGISLACAO:CODIGO") para evitar ambiguidade quando o mesmo código aparece em legislações diferentes. Caso precise de artigos específicos que ainda não estejam disponíveis, <strong>entre em contato</strong> e podemos adicionar rapidamente.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -516,7 +510,7 @@ curl_close($ch);
                   <AccordionContent className="text-slate-600">
                     Sim! A API foi desenvolvida especialmente para <strong>componentes de autocomplete modernos</strong>. 
                     Retorna dados em formato JSON otimizado, permite busca por texto em tempo real, 
-                    filtros por tipo (crime/contravenção) e legislação (CP/LCP). <strong>Respostas ultra-rápidas</strong> 
+                    filtros por tipo (crime/contravenção), nível (artigo/parágrafo/inciso/alínea) e legislação (CP, LCP, ECA, CTB, Lei de Drogas etc.). <strong>Respostas ultra-rápidas</strong> 
                     graças ao nosso sistema de cache inteligente.
                   </AccordionContent>
                 </AccordionItem>
@@ -526,20 +520,24 @@ curl_close($ch);
                     Quais legislações estão incluídas?
                   </AccordionTrigger>
                   <AccordionContent className="text-slate-600">
-                    Incluímos artigos de <strong>10 legislações brasileiras</strong>:
+                    Incluímos <strong>36 legislações brasileiras</strong>, extraídas dos textos compilados oficiais do Planalto:
                     <ul className="list-disc list-inside mt-2 space-y-1">
-                      <li><strong>Código Penal (CP - Decreto-Lei 2.848/1940):</strong> 97 artigos (incluindo variações qualificadas de furto, roubo, estelionato, estupro, extorsão, sequestro, tráfico de pessoas, violação sexual mediante fraude, importunação sexual, assédio sexual, desacato, ocultação de cadáver, falsa identidade, resistência e favorecimento real)</li>
-                      <li><strong>Estatuto da Criança e do Adolescente (ECA - Lei 8.069/1990):</strong> 4 artigos</li>
-                      <li><strong>Lei de Contravenções Penais (LCP - Decreto-Lei 3.688/1941):</strong> 3 artigos</li>
-                      <li><strong>Lei de Drogas (Lei 11.343/2006):</strong> 2 artigos (tráfico, associação)</li>
-                      <li><strong>Lei Maria da Penha (Lei 11.340/2006):</strong> 2 artigos (violência doméstica, descumprimento de medidas protetivas)</li>
-                      <li><strong>Estatuto do Desarmamento (Lei 10.826/2003):</strong> 2 artigos (porte ilegal de arma)</li>
-                      <li><strong>Código de Trânsito Brasileiro (CTB - Lei 9.503/1997):</strong> 4 artigos</li>
-                      <li><strong>Lei de Crimes Ambientais (Lei 9.605/98):</strong> 5 artigos</li>
-                      <li><strong>Código de Defesa do Consumidor (CDC - Lei 8.078/1990):</strong> 2 artigos</li>
-                      <li><strong>Lei de Lavagem de Dinheiro (Lei 9.613/98):</strong> 1 artigo</li>
+                      <li><strong>Código Penal (CP – Decreto-Lei 2.848/1940):</strong> Parte Geral e Parte Especial completas – 434 artigos e 1.314 dispositivos (todos os crimes, qualificadoras, causas de aumento e diminuição, incisos e alíneas), já com as alterações de 2024 a 2026</li>
+                      <li><strong>Lei de Contravenções Penais (LCP – Decreto-Lei 3.688/1941):</strong> todas as contravenções (arts. 18 a 70)</li>
+                      <li><strong>Lei de Drogas (Lei 11.343/2006):</strong> porte para consumo, tráfico e figuras correlatas (arts. 28 e 33 a 41)</li>
+                      <li><strong>Estatuto do Desarmamento (Lei 10.826/2003):</strong> todos os crimes (arts. 12 a 20)</li>
+                      <li><strong>Lei Maria da Penha (Lei 11.340/2006)</strong> e <strong>Lei Henry Borel (Lei 14.344/2022)</strong></li>
+                      <li><strong>ECA (Lei 8.069/1990):</strong> todos os crimes (arts. 225 a 244-C)</li>
+                      <li><strong>Estatuto da Pessoa Idosa (Lei 10.741/2003)</strong>, <strong>Estatuto da Pessoa com Deficiência (Lei 13.146/2015)</strong> e <strong>Lei 7.853/1989</strong></li>
+                      <li><strong>Código de Trânsito Brasileiro (CTB – Lei 9.503/1997):</strong> todos os crimes de trânsito (arts. 302 a 312-B)</li>
+                      <li><strong>Lei de Crimes Ambientais (Lei 9.605/1998):</strong> todos os crimes (arts. 29 a 69-A)</li>
+                      <li><strong>Código de Defesa do Consumidor (CDC – Lei 8.078/1990):</strong> arts. 61 a 80</li>
+                      <li><strong>Crimes econômicos:</strong> Lei 8.137/1990 (ordem tributária e econômica), Lei 1.521/1951 (economia popular), Lei 9.613/1998 (lavagem de dinheiro), Lei 7.492/1986 (sistema financeiro), Lei 6.385/1976 (mercado de capitais), Lei 11.101/2005 (crimes falimentares), Lei 9.279/1996 (propriedade industrial) e Lei 9.609/1998 (software)</li>
+                      <li><strong>Crimes contra a pessoa e a dignidade:</strong> Lei 9.455/1997 (tortura), Lei 7.716/1989 (racismo), Lei 2.889/1956 (genocídio), Lei 12.984/2014 (discriminação de portadores do HIV) e Lei 9.029/1995 (práticas discriminatórias no trabalho)</li>
+                      <li><strong>Criminalidade organizada e segurança:</strong> Lei 12.850/2013 (organização criminosa), Lei 8.072/1990 (crimes hediondos), Lei 13.260/2016 (terrorismo), Lei 13.869/2019 (abuso de autoridade) e Lei 9.296/1996 (interceptação telefônica)</li>
+                      <li><strong>Outras:</strong> Decreto-Lei 201/1967 (crimes de prefeitos), Código Eleitoral (Lei 4.737/1965 – arts. 289 a 354-A), Lei 9.434/1997 (transplantes), Lei 11.105/2005 (biossegurança) e Lei 6.766/1979 (parcelamento do solo)</li>
                     </ul>
-                    <strong>Total: 122 artigos de crimes que podem levar à prisão.</strong> Incluindo formas qualificadas e agravadas dos crimes mais comuns. Estamos constantemente expandindo nossa base de dados. Se precisar de outras legislações específicas, <strong>entre em contato</strong> com nossa equipe.
+                    <strong>Total: 2.438 dispositivos penais.</strong> Artigos revogados são mantidos (tipo <code className="bg-slate-100 px-1 rounded">revogado</code>) para consulta de processos antigos. Se precisar de outras legislações específicas, <strong>entre em contato</strong> com nossa equipe.
                   </AccordionContent>
                 </AccordionItem>
 

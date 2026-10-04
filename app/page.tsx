@@ -369,7 +369,7 @@ export default function HomePage() {
                 <p className="text-sm text-white/40 mb-4">
                   Consulte{' '}
                   <strong className="text-white/60">artigos do Código Penal</strong>{' '}
-                  brasileiro (CP + LCP).
+                  brasileiro e de 35 leis especiais.
                 </p>
                 <span
                   className="inline-block text-xs font-semibold px-3 py-1 rounded-full"
@@ -446,9 +446,9 @@ export default function HomePage() {
                     API de Artigos Penais
                   </h3>
                   <p className="text-sm text-white/40">
-                    <strong className="text-white/60">10 legislações</strong> · Cache
+                    <strong className="text-white/60">36 legislações</strong> · Cache
                     permanente ·{' '}
-                    <strong className="text-white/60">122 artigos</strong>
+                    <strong className="text-white/60">2.438 dispositivos</strong>
                   </p>
                 </div>
                 <span

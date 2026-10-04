@@ -188,7 +188,7 @@ export default function ConsultarPenalPage() {
     },
     {
       question: "De onde vêm os dados dos artigos penais?",
-      answer: "Utilizamos dados oficiais de 10 legislações brasileiras: Código Penal (CP - 97 artigos incluindo homicídio, feminicídio, receptação, furto qualificado, roubo qualificado, estelionato qualificado, estupro qualificado, extorsão, sequestro, tráfico de pessoas, violação sexual mediante fraude, importunação sexual, assédio sexual, desacato, ocultação de cadáver, falsa identidade, resistência, favorecimento real), Lei Maria da Penha (2 artigos), Estatuto do Desarmamento (3 artigos - posse ilegal, porte ilegal de arma de uso permitido e restrito), Estatuto da Criança e do Adolescente (ECA - 4 artigos), Lei de Contravenções Penais (LCP - 3 artigos), Lei de Drogas (2 artigos), Código de Trânsito Brasileiro (CTB - 4 artigos), Lei de Crimes Ambientais (5 artigos), Código de Defesa do Consumidor (CDC - 2 artigos) e Lei de Lavagem de Dinheiro (1 artigo). Total de 122 artigos de crimes que podem levar à prisão. Dados fixos armazenados em cache permanente para máxima performance."
+      answer: "Utilizamos os textos compilados oficiais do Planalto de 36 legislações brasileiras: Código Penal completo (Parte Geral e Parte Especial, 434 artigos e 1.314 dispositivos, com as alterações de 2024 a 2026), Lei de Contravenções Penais (todas as contravenções), Lei de Drogas, Lei Maria da Penha, Lei Henry Borel, Estatuto do Desarmamento, ECA, Estatuto da Pessoa Idosa, Estatuto da Pessoa com Deficiência, Código de Trânsito Brasileiro, Lei de Crimes Ambientais, Código de Defesa do Consumidor, Lei 8.137/90 (crimes tributários e econômicos), Lavagem de Dinheiro, Sistema Financeiro Nacional, Mercado de Capitais, Crimes Falimentares, Propriedade Industrial, Software, Tortura, Racismo, Genocídio, Organização Criminosa, Crimes Hediondos, Terrorismo, Abuso de Autoridade, Interceptação Telefônica, Crimes de Prefeitos, Código Eleitoral, Transplantes, Biossegurança, Parcelamento do Solo e outras. Total de 2.438 dispositivos (864 artigos, 761 parágrafos, 731 incisos e 82 alíneas). Dados fixos armazenados em cache permanente para máxima performance."
     },
     {
       question: "Qual a velocidade de resposta?",
@@ -648,7 +648,7 @@ export default function ConsultarPenalPage() {
           <p className="text-slate-600 mb-4">
             Consultar um artigo penal é simples: basta digitar o código do artigo (ex: 121 para Homicídio, 
             157 para Roubo, 155 para Furto) na ferramenta acima. Nossa plataforma busca automaticamente no 
-            banco de dados oficial, com 122 artigos de crimes que podem levar à prisão (incluindo feminicídio, receptação, furto qualificado, roubo qualificado, estelionato qualificado, estupro qualificado, extorsão, sequestro, tráfico de pessoas, violação sexual mediante fraude, importunação sexual, assédio sexual, desacato, ocultação de cadáver, falsa identidade, resistência, favorecimento real, Lei Maria da Penha e Estatuto do Desarmamento), garantindo informações precisas e 
+            banco de dados oficial, com 2.438 dispositivos penais de 36 legislações (Código Penal completo com todas as qualificadoras e causas de aumento, Lei de Contravenções, Lei de Drogas, Lei Maria da Penha, Estatuto do Desarmamento, ECA, CTB, Crimes Ambientais, CDC, Tortura, Racismo, Organização Criminosa, Crimes Hediondos, Abuso de Autoridade e muito mais), garantindo informações precisas e 
             atualizadas sobre o artigo, incluindo descrição, texto completo, tipo, legislação e penas.
           </p>
 
@@ -660,7 +660,7 @@ export default function ConsultarPenalPage() {
           </p>
           <ul className="list-disc list-inside text-slate-600 space-y-2 mb-4">
             <li>Cache permanente no Redis para dados fixos</li>
-            <li>122 artigos de crimes que podem levar à prisão, de 10 legislações (CP, Maria da Penha, Desarmamento, LCP, ECA, CTB, CDC e Leis Especiais), incluindo formas qualificadas e agravadas</li>
+            <li>2.438 dispositivos penais de 36 legislações (Código Penal completo, LCP, Lei de Drogas, Maria da Penha, Desarmamento, ECA, CTB, CDC, Crimes Ambientais e leis especiais), incluindo parágrafos, incisos e alíneas</li>
             <li>Busca por texto, código, tipo e legislação</li>
             <li>100 requests gratuitos por dia</li>
             <li>Documentação completa com exemplos em JavaScript, Python e PHP</li>
