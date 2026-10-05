@@ -278,7 +278,7 @@ async function buscarCep(cep) {
           {
             question: 'O que acontece se o ViaCEP estiver fora do ar?',
             answer:
-              'A API tenta primeiro os caches (Redis, PostgreSQL e MongoDB). Se o CEP não estiver em nenhum deles, consulta o ViaCEP e, em caso de erro ou timeout, aciona automaticamente a BrasilAPI e a OpenCEP. Sua aplicação recebe a mesma resposta, sem precisar implementar fallback.',
+              'A API tenta primeiro os caches (Redis, PostgreSQL e MongoDB). Se o CEP não estiver em nenhum deles, consulta o ViaCEP e, em caso de erro ou timeout, aciona automaticamente a BrasilAPI. Sua aplicação recebe a mesma resposta, sem precisar implementar fallback.',
           },
           {
             question: 'Preciso de chave de API? Quanto custa?',
