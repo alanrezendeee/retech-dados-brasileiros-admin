@@ -89,7 +89,7 @@ export default function AlternativaViacep() {
           <strong>ViaCEP.</strong> Primeira fonte externa consultada quando o CEP ainda não está em nenhum cache.
         </li>
         <li>
-          <strong>BrasilAPI e OpenCEP.</strong> Fallbacks acionados automaticamente quando o ViaCEP falha, demora ou devolve 429.
+          <strong>BrasilAPI.</strong> Fallback acionado automaticamente quando o ViaCEP falha, demora ou devolve 429. Em segundo plano, um crawler alimenta a base própria (PostgreSQL) a partir de ViaCEP, BrasilAPI e OpenCEP.
         </li>
       </ol>
       <p>
@@ -187,7 +187,7 @@ async function buscarCep(cep) {
           <tr>
             <td>Fontes de dados</td>
             <td>Uma (base própria)</td>
-            <td>ViaCEP, BrasilAPI, OpenCEP e base própria em PostgreSQL</td>
+            <td>ViaCEP e BrasilAPI em tempo real; base própria em PostgreSQL alimentada por crawler (ViaCEP, BrasilAPI e OpenCEP)</td>
           </tr>
           <tr>
             <td>Fallback automático</td>
