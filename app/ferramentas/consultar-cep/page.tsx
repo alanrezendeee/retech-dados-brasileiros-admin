@@ -1,387 +1,308 @@
-'use client';
-
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Badge } from '@/components/ui/badge';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Search, MapPin, Clock, Share2, ArrowRight } from 'lucide-react';
-import { toast } from 'sonner';
-import FAQSchema from '@/app/components/schemas/FAQSchema';
-import BreadcrumbSchema from '@/app/components/schemas/BreadcrumbSchema';
+import { MapPin, ArrowRight } from 'lucide-react';
+import PublicShell from '@/components/seo/public-shell';
+import Breadcrumb from '@/components/seo/breadcrumb';
+import Faq, { type FaqItem } from '@/components/seo/faq';
+import JsonLd from '@/components/seo/json-ld';
+import { ORGANIZATION, absoluteUrl } from '@/lib/seo/site';
+import ConsultaCepClient from './consulta-client';
 
-interface CEPData {
-  cep: string;
-  logradouro: string;
-  complemento?: string;
-  bairro: string;
-  localidade: string;
-  uf: string;
-  ibge?: string;
-  ddd?: string;
-  source: string;
-}
-
-export default function ConsultarCEPPage() {
-  const [cep, setCep] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<CEPData | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [responseTime, setResponseTime] = useState<number | null>(null);
-  const [demoApiKey, setDemoApiKey] = useState('');
-
-  const apiBaseURL = process.env.NEXT_PUBLIC_API_URL || 'https://api-core.theretech.com.br';
-
-  // ✅ Buscar API Key demo do backend (mesma lógica do playground)
-  useEffect(() => {
-    const fetchPlaygroundConfig = async () => {
-      try {
-        const res = await fetch(`${apiBaseURL}/public/playground/status`, {
-          cache: 'no-store',
-          headers: {
-            'Cache-Control': 'no-cache, no-store, must-revalidate',
-            'Pragma': 'no-cache',
-            'Expires': '0'
-          }
-        });
-        const data = await res.json();
-        if (data.apiKey) {
-          setDemoApiKey(data.apiKey);
-        }
-      } catch (error) {
-        console.error('Erro ao buscar API Key demo:', error);
-      }
-    };
-    fetchPlaygroundConfig();
-  }, []);
-
-  const handleConsulta = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    const cleanCEP = cep.replace(/\D/g, '');
-    
-    if (cleanCEP.length !== 8) {
-      toast.error('CEP inválido. Digite 8 dígitos.');
-      return;
-    }
-
-    setLoading(true);
-    setError(null);
-    setData(null);
-    setResponseTime(null);
-
-    const startTime = performance.now();
-
-    try {
-      const response = await fetch(`${apiBaseURL}/public/cep/${cleanCEP}`, {
-        headers: {
-          'X-API-Key': demoApiKey  // ✅ API Key do settings
-        }
-      });
-      
-      const endTime = performance.now();
-      setResponseTime(Math.round(endTime - startTime));
-
-      if (!response.ok) {
-        throw new Error('CEP não encontrado');
-      }
-
-      const result = await response.json();
-      setData(result);
-      
-      // Atualizar URL sem recarregar
-      window.history.replaceState(null, '', `/ferramentas/consultar-cep?cep=${cleanCEP}`);
-    } catch (err) {
-      setError('CEP não encontrado. Verifique o número digitado.');
-      toast.error('CEP não encontrado');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleShare = () => {
-    const url = `${window.location.origin}/ferramentas/consultar-cep?cep=${cep.replace(/\D/g, '')}`;
-    navigator.clipboard.writeText(url);
-    toast.success('Link copiado! Compartilhe com seus amigos.');
-  };
-
-  const formatCEP = (value: string) => {
-    const clean = value.replace(/\D/g, '');
-    if (clean.length <= 5) {
-      return clean;
-    }
-    return `${clean.slice(0, 5)}-${clean.slice(5, 8)}`;
-  };
-
-  // FAQs para schema SEO
-  const faqs = [
-    {
-      question: "Como consultar CEP gratuitamente?",
-      answer: "Basta digitar o CEP no formato XXXXX-XXX ou XXXXXXXX e clicar em Consultar. A ferramenta é gratuita e não requer cadastro."
-    },
-    {
-      question: "De onde vêm os dados de CEP?",
-      answer: "Utilizamos ViaCEP e Brasil API com fallback automático entre múltiplas fontes, garantindo 99.9% de disponibilidade e dados sempre atualizados."
-    },
-    {
-      question: "Qual a velocidade de resposta?",
-      answer: "A consulta tem resposta média de ~160ms. Quando o CEP está em cache, a resposta é quase instantânea (<5ms)."
-    },
-    {
-      question: "Preciso de API Key?",
-      answer: "Não! Esta é uma ferramenta pública e gratuita. Se você precisa integrar CEP no seu sistema, confira nossa API com 100 requests/dia grátis."
-    }
-  ];
-
-  // Breadcrumbs para schema SEO
-  const breadcrumbs = [
-    { name: "Home", url: "https://core.theretech.com.br" },
-    { name: "Ferramentas", url: "https://core.theretech.com.br/ferramentas" },
-    { name: "Consultar CEP", url: "https://core.theretech.com.br/ferramentas/consultar-cep" }
-  ];
-
+function H2({ id, children }: { id: string; children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4">
-      {/* Schemas SEO */}
-      <FAQSchema faqs={faqs} />
-      <BreadcrumbSchema items={breadcrumbs} />
-      
-      <div className="container max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 mb-4">
-            <MapPin className="w-8 h-8 text-indigo-600" />
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-            Consultar CEP Grátis
-          </h1>
-          <p className="text-xl text-slate-600 mb-2">
-            Descubra endereços completos a partir do CEP
-          </p>
-          <div className="flex items-center justify-center gap-4 text-sm text-slate-500">
-            <span>✅ Gratuito</span>
-            <span>✅ Sem cadastro</span>
-            <span>✅ Dados atualizados</span>
-          </div>
-        </div>
-
-        {/* Search Card */}
-        <Card className="mb-8 shadow-xl">
-          <CardHeader>
-            <CardTitle>Digite o CEP que você quer consultar</CardTitle>
-            <CardDescription>Informe apenas os números, com ou sem traço</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleConsulta} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="cep" className="text-lg">CEP</Label>
-                <Input
-                  id="cep"
-                  placeholder="01310-100"
-                  value={formatCEP(cep)}
-                  onChange={(e) => setCep(e.target.value)}
-                  maxLength={9}
-                  className="text-2xl py-6 text-center font-mono"
-                  autoFocus
-                />
-              </div>
-
-              <Button
-                type="submit"
-                disabled={loading || cep.replace(/\D/g, '').length !== 8}
-                className="w-full bg-indigo-600 hover:bg-indigo-700 py-6 text-lg"
-              >
-                {loading ? (
-                  <>
-                    <span className="animate-spin mr-2">⏳</span>
-                    Consultando...
-                  </>
-                ) : (
-                  <>
-                    <Search className="w-5 h-5 mr-2" />
-                    Consultar CEP
-                  </>
-                )}
-              </Button>
-
-              {responseTime !== null && (
-                <Alert className="bg-green-50 border-green-200">
-                  <Clock className="h-4 w-4 text-green-600" />
-                  <AlertDescription className="text-green-800">
-                    Resultado em <strong>{responseTime}ms</strong> ⚡
-                  </AlertDescription>
-                </Alert>
-              )}
-            </form>
-          </CardContent>
-        </Card>
-
-        {/* Error */}
-        {error && (
-          <Alert variant="destructive" className="mb-8">
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
-        )}
-
-        {/* Result */}
-        {data && (
-          <Card className="mb-8 shadow-xl">
-            <CardHeader className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
-              <div className="flex items-center justify-between">
-                <div>
-                  <CardTitle className="text-2xl">Endereço Encontrado!</CardTitle>
-                  <CardDescription className="text-indigo-100">
-                    CEP: {formatCEP(data.cep)}
-                  </CardDescription>
-                </div>
-                <Button
-                  onClick={handleShare}
-                  variant="secondary"
-                  size="sm"
-                >
-                  <Share2 className="w-4 h-4 mr-2" />
-                  Compartilhar
-                </Button>
-              </div>
-            </CardHeader>
-            <CardContent className="pt-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <Label className="text-sm text-slate-500">Logradouro</Label>
-                  <p className="text-lg font-semibold">{data.logradouro || 'N/A'}</p>
-                </div>
-                
-                <div>
-                  <Label className="text-sm text-slate-500">Bairro</Label>
-                  <p className="text-lg font-semibold">{data.bairro || 'N/A'}</p>
-                </div>
-                
-                <div>
-                  <Label className="text-sm text-slate-500">Cidade</Label>
-                  <p className="text-lg font-semibold">{data.localidade}</p>
-                </div>
-                
-                <div>
-                  <Label className="text-sm text-slate-500">Estado</Label>
-                  <p className="text-lg font-semibold">{data.uf}</p>
-                </div>
-
-                {data.ddd && (
-                  <div>
-                    <Label className="text-sm text-slate-500">DDD</Label>
-                    <p className="text-lg font-semibold">{data.ddd}</p>
-                  </div>
-                )}
-
-                {data.ibge && (
-                  <div>
-                    <Label className="text-sm text-slate-500">Código IBGE</Label>
-                    <p className="text-lg font-semibold">{data.ibge}</p>
-                  </div>
-                )}
-              </div>
-
-              <div className="mt-6 pt-6 border-t">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Badge variant="secondary">
-                      Fonte: {data.source === 'cache' ? 'Cache' : data.source === 'viacep' ? 'ViaCEP' : 'Brasil API'}
-                    </Badge>
-                    {responseTime && responseTime < 50 && (
-                      <Badge variant="secondary" className="bg-green-100 text-green-800">
-                        ⚡ Ultra-rápido
-                      </Badge>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        )}
-
-        {/* Info Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <Card>
-            <CardContent className="pt-6 text-center">
-              <div className="text-3xl mb-2">🚀</div>
-              <h3 className="font-semibold mb-1">Resposta Rápida</h3>
-              <p className="text-sm text-slate-600">~160ms com cache Redis</p>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="pt-6 text-center">
-              <div className="text-3xl mb-2">🔒</div>
-              <h3 className="font-semibold mb-1">Dados Confiáveis</h3>
-              <p className="text-sm text-slate-600">Direto do ViaCEP e Brasil API</p>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="pt-6 text-center">
-              <div className="text-3xl mb-2">💯</div>
-              <h3 className="font-semibold mb-1">100% Gratuito</h3>
-              <p className="text-sm text-slate-600">Gratuito e sem cadastro</p>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* CTA */}
-        <Card className="bg-gradient-to-r from-indigo-600 to-purple-600 border-0 text-white">
-          <CardContent className="p-8 text-center">
-            <h2 className="text-2xl font-bold mb-4">Precisa integrar CEP no seu sistema?</h2>
-            <p className="text-lg mb-6 text-indigo-100">
-              Use nossa API profissional com <strong>100 requests/dia gratuitos</strong>
-            </p>
-            <div className="flex gap-4 justify-center flex-wrap">
-              <Button asChild size="lg" variant="secondary">
-                <Link href="/playground">
-                  Testar no Playground
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="bg-white/10 hover:bg-white/20 text-white border-white/30">
-                <Link href="/painel/register">
-                  Criar Conta Grátis
-                </Link>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* SEO Content */}
-        <div className="mt-12 prose prose-slate max-w-none">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">O que é CEP?</h2>
-          <p className="text-slate-600 mb-4">
-            O <strong>Código de Endereçamento Postal (CEP)</strong> é um sistema de códigos postais utilizado pelos Correios do Brasil 
-            para facilitar o encaminhamento e a entrega de correspondências. Criado em 1972, o CEP é composto por 8 dígitos que 
-            identificam precisamente logradouros, bairros e localidades em todo o território nacional.
-          </p>
-
-          <h2 className="text-2xl font-bold text-slate-900 mb-4 mt-8">Como Consultar CEP?</h2>
-          <p className="text-slate-600 mb-4">
-            Consultar um CEP é simples: basta digitar os 8 números do código postal na ferramenta acima. Nossa plataforma busca 
-            automaticamente em múltiplas fontes confiáveis (ViaCEP e Brasil API) para garantir que você receba informações precisas 
-            e atualizadas sobre o endereço, incluindo logradouro, bairro, cidade, estado e DDD.
-          </p>
-
-          <h2 className="text-2xl font-bold text-slate-900 mb-4 mt-8">API de CEP para Desenvolvedores</h2>
-          <p className="text-slate-600 mb-4">
-            Se você é desenvolvedor e precisa integrar consulta de CEP no seu site, aplicativo ou sistema, nossa{' '}
-            <Link href="/playground" className="text-indigo-600 hover:underline">API de CEP</Link> oferece:
-          </p>
-          <ul className="list-disc list-inside text-slate-600 space-y-2 mb-4">
-            <li>Cache inteligente em 3 camadas para máxima velocidade</li>
-            <li>Fallback automático entre ViaCEP e Brasil API</li>
-            <li>100 requests gratuitos por dia</li>
-            <li>Documentação completa com exemplos em JavaScript, Python e PHP</li>
-            <li>Suporte para integração REST simples</li>
-          </ul>        </div>
-      </div>
-    </div>
+    <h2 id={id} className="text-2xl md:text-3xl font-bold text-slate-900 mt-12 mb-4 scroll-mt-24">
+      {children}
+    </h2>
   );
 }
+const P = ({ children }: { children: React.ReactNode }) => <p className="text-slate-600 leading-relaxed mb-4">{children}</p>;
 
+const faqs: FaqItem[] = [
+  {
+    question: 'Como consultar um CEP nesta página?',
+    answer:
+      'Digite os 8 números do CEP no campo acima, com ou sem hífen, e clique em Consultar CEP. Em seguida a página mostra logradouro, complemento, bairro, cidade, estado, DDD, código IBGE do município e, quando disponível, as coordenadas.',
+  },
+  {
+    question: 'A consulta de CEP é gratuita? Preciso me cadastrar?',
+    answer:
+      'Sim, é gratuita e não exige cadastro. A ferramenta usa uma chave de demonstração com limite por endereço IP. Para consultar em volume ou integrar no seu sistema, a API de CEP tem plano gratuito com 100 requisições por dia.',
+  },
+  {
+    question: 'De onde vêm os dados de endereço?',
+    answer:
+      'A consulta passa pela API de CEP da Retech Core, que combina três fontes públicas (ViaCEP, BrasilAPI e OpenCEP): a consulta em tempo real usa o ViaCEP com troca automática para a BrasilAPI, e a base própria é alimentada em segundo plano pelas três. Os resultados ficam em cache próprio. O rótulo Fonte no resultado indica de onde veio aquela resposta.',
+  },
+  {
+    question: 'Por que o logradouro veio vazio?',
+    answer:
+      'Cidades pequenas costumam ter um único CEP para toda a localidade (CEP geral). Nesses casos os Correios não atribuem CEP por rua, então o resultado traz apenas cidade e estado. Isso não é um erro da consulta.',
+  },
+  {
+    question: 'O que é o código IBGE que aparece no resultado?',
+    answer:
+      'É o código de 7 dígitos que o IBGE atribui a cada município brasileiro. Ele é exigido em notas fiscais eletrônicas, integrações com sistemas públicos e cadastros que precisam identificar o município sem ambiguidade de grafia.',
+  },
+  {
+    question: 'O que fazer se o CEP não for encontrado?',
+    answer:
+      'Confira se digitou os 8 dígitos corretamente. CEPs muito recentes podem ainda não constar nas bases públicas, e CEPs de grandes empresas ou caixas postais às vezes não têm logradouro associado. Se souber a rua e a cidade, use a busca de CEP por endereço para localizar o código correto.',
+  },
+  {
+    question: 'Qual a diferença entre consultar CEP e buscar CEP por endereço?',
+    answer:
+      'Consultar CEP parte do código e devolve o endereço. Buscar CEP por endereço faz o inverso: você informa estado, cidade e rua e recebe a lista de CEPs daquele logradouro. As duas ferramentas estão disponíveis gratuitamente neste site.',
+  },
+  {
+    question: 'Os dados estão atualizados?',
+    answer:
+      'Os resultados são renovados a partir das fontes públicas quando o cache expira, e a base própria guarda a data da última verificação de cada CEP. Mudanças de nome de logradouro ou criação de novos CEPs pelos Correios são incorporadas conforme as fontes as publicam.',
+  },
+  {
+    question: 'Posso compartilhar o resultado?',
+    answer:
+      'Sim. O botão Compartilhar copia um link direto para a consulta, no formato /ferramentas/consultar-cep?cep=01310100. Quem abrir o link verá o mesmo endereço.',
+  },
+  {
+    question: 'Como integrar a consulta de CEP no meu site ou sistema?',
+    answer:
+      'Use a API de CEP: um GET em /cep/{cep} com o header X-API-Key devolve o mesmo JSON que esta página exibe. A página da API traz exemplos em Node.js, PHP e Python, e o plano gratuito inclui 100 requisições por dia sem cartão de crédito.',
+  },
+];
+
+export default function ConsultarCEPPage() {
+  const webApp = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'Consultar CEP',
+    url: absoluteUrl('/ferramentas/consultar-cep'),
+    description:
+      'Ferramenta gratuita para consultar CEP e obter logradouro, bairro, cidade, UF, DDD, código IBGE e coordenadas, com múltiplas fontes e fallback automático.',
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Web',
+    browserRequirements: 'Requires JavaScript',
+    inLanguage: 'pt-BR',
+    isAccessibleForFree: true,
+    provider: { '@type': 'Organization', name: ORGANIZATION.name, url: ORGANIZATION.url },
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'BRL' },
+  };
+
+  return (
+    <PublicShell>
+      <JsonLd data={webApp} />
+      <main>
+        <section className="bg-gradient-to-b from-indigo-50 to-white border-b border-slate-100">
+          <div className="container max-w-4xl mx-auto px-4 pt-8 pb-10">
+            <Breadcrumb items={[{ label: 'Ferramentas', href: '/ferramentas/consultar-cep' }, { label: 'Consultar CEP' }]} className="mb-8" />
+            <div className="text-center">
+              <MapPin className="w-9 h-9 text-indigo-600 mx-auto mb-4" />
+              <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Consultar CEP grátis</h1>
+              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                Digite o CEP e veja o endereço completo: rua, bairro, cidade, estado, DDD e código IBGE. Três fontes
+                com troca automática e cache para resposta rápida.
+              </p>
+              <ul className="mt-4 flex flex-wrap justify-center gap-x-5 gap-y-1 text-sm text-slate-500">
+                <li>Gratuito</li>
+                <li>Sem cadastro</li>
+                <li>Todos os CEPs do Brasil</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section className="container max-w-4xl mx-auto px-4 py-8">
+          <ConsultaCepClient />
+        </section>
+
+        <article className="container max-w-4xl mx-auto px-4 pb-20">
+          <H2 id="o-que-e">O que é o CEP e o que esta consulta mostra</H2>
+          <P>
+            O CEP, Código de Endereçamento Postal, é o código de oito dígitos criado pelos Correios em 1972 para
+            organizar a distribuição de correspondências no Brasil. Os cinco primeiros dígitos identificam região,
+            sub-região, setor, subsetor e divisor de subsetor; os três últimos, chamados de sufixo, identificam o
+            logradouro ou um trecho dele. Em cidades grandes, uma avenida longa como a Paulista tem vários CEPs, um
+            para cada trecho e lado da via. Em cidades pequenas, um único CEP cobre toda a localidade.
+          </P>
+          <P>
+            Ao consultar um CEP nesta página você recebe o logradouro, o complemento (o trecho da via, quando
+            houver), o bairro, a cidade, a UF, o DDD da região, o código IBGE do município e, quando a fonte fornece,
+            a latitude e a longitude aproximadas. Esses são os mesmos campos que a{' '}
+            <Link href="/apis/cep" className="text-indigo-700 underline">
+              API de CEP
+            </Link>{' '}
+            devolve para sistemas integrados.
+          </P>
+
+          <H2 id="como-funciona">Como funciona a consulta</H2>
+          <P>
+            Ao enviar o formulário, a página chama o endpoint público <code>GET /cep/{'{cep}'}</code> da API da Retech
+            Core com uma chave de demonstração. A API verifica primeiro o cache em memória, depois a base própria de
+            CEPs já verificados (alimentada em segundo plano a partir de ViaCEP, BrasilAPI e OpenCEP) e, se o CEP
+            ainda não estiver lá, consulta o ViaCEP e, em caso de falha, a BrasilAPI. Quando todas as fontes falham, a
+            página informa que o CEP não foi encontrado.
+          </P>
+          <P>
+            O rótulo "Fonte" no resultado mostra de onde veio a resposta. "Cache" e "Base própria" indicam que o CEP
+            já havia sido consultado antes e foi servido sem acessar nenhum provedor externo, o que costuma levar
+            menos de 50 milissegundos de processamento. Na primeira consulta de um CEP, a fonte será ViaCEP ou
+            BrasilAPI.
+          </P>
+
+          <H2 id="exemplos">Exemplos de consulta</H2>
+          <div className="overflow-x-auto my-4">
+            <table className="w-full text-sm border border-slate-200 rounded-lg overflow-hidden">
+              <thead className="bg-slate-50 text-left">
+                <tr>
+                  <th className="p-3 font-semibold">CEP</th>
+                  <th className="p-3 font-semibold">Endereço</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-200 text-slate-600">
+                <tr>
+                  <td className="p-3 font-mono">
+                    <Link href="/ferramentas/consultar-cep?cep=01310100" className="text-indigo-700 underline">
+                      01310-100
+                    </Link>
+                  </td>
+                  <td className="p-3">Avenida Paulista, Bela Vista, São Paulo/SP, DDD 11</td>
+                </tr>
+                <tr>
+                  <td className="p-3 font-mono">
+                    <Link href="/ferramentas/consultar-cep?cep=20040020" className="text-indigo-700 underline">
+                      20040-020
+                    </Link>
+                  </td>
+                  <td className="p-3">Rua da Assembleia, Centro, Rio de Janeiro/RJ, DDD 21</td>
+                </tr>
+                <tr>
+                  <td className="p-3 font-mono">
+                    <Link href="/ferramentas/consultar-cep?cep=70040010" className="text-indigo-700 underline">
+                      70040-010
+                    </Link>
+                  </td>
+                  <td className="p-3">Setor Bancário Norte, Asa Norte, Brasília/DF, DDD 61</td>
+                </tr>
+                <tr>
+                  <td className="p-3 font-mono">
+                    <Link href="/ferramentas/consultar-cep?cep=88010400" className="text-indigo-700 underline">
+                      88010-400
+                    </Link>
+                  </td>
+                  <td className="p-3">Rua Felipe Schmidt, Centro, Florianópolis/SC, DDD 48</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <P>
+            Para navegar por cidade e estado antes de consultar, veja a seção{' '}
+            <Link href="/cep" className="text-indigo-700 underline">
+              CEPs por estado
+            </Link>
+            . Se você sabe a rua mas não o CEP, use a ferramenta de{' '}
+            <Link href="/ferramentas/buscar-cep" className="text-indigo-700 underline">
+              busca de CEP por endereço
+            </Link>
+            .
+          </P>
+
+          <H2 id="para-que-serve">Para que serve consultar o CEP</H2>
+          <ul className="list-disc pl-6 text-slate-600 space-y-2 mb-4">
+            <li>
+              <strong>Preencher um cadastro ou um checkout</strong> sem erro de digitação no nome da rua, do bairro ou da
+              cidade.
+            </li>
+            <li>
+              <strong>Conferir um endereço antes de enviar uma encomenda</strong> ou um documento, evitando devoluções.
+            </li>
+            <li>
+              <strong>Descobrir o código IBGE do município</strong> para emissão de nota fiscal eletrônica ou integração com
+              sistemas públicos.
+            </li>
+            <li>
+              <strong>Verificar o DDD</strong> de uma região a partir do endereço.
+            </li>
+            <li>
+              <strong>Ver o formato do JSON</strong> antes de integrar a API de CEP em um sistema.
+            </li>
+          </ul>
+
+          <H2 id="api">Precisa integrar a consulta de CEP no seu sistema?</H2>
+          <P>
+            Tudo o que esta página exibe vem da API de CEP, que você pode usar no seu próprio produto. O plano
+            gratuito oferece 100 requisições por dia, sem cartão de crédito, e inclui consulta por CEP e busca
+            reversa por endereço. Os campos de resposta seguem a convenção do ViaCEP, então migrar um código
+            existente costuma se resumir a trocar a URL e adicionar o header da chave. Veja exemplos em Node.js, PHP
+            e Python na{' '}
+            <Link href="/apis/cep" className="text-indigo-700 underline">
+              página da API
+            </Link>
+            , teste no{' '}
+            <Link href="/playground" className="text-indigo-700 underline">
+              playground
+            </Link>{' '}
+            ou leia a{' '}
+            <Link href="/docs" className="text-indigo-700 underline">
+              documentação
+            </Link>
+            . Os planos pagos estão em{' '}
+            <Link href="/precos" className="text-indigo-700 underline">
+              preços
+            </Link>
+            .
+          </P>
+
+          <Faq items={faqs} className="mt-14" />
+
+          <section className="mt-14 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-8 text-center">
+            <h2 className="text-2xl font-bold mb-3">Integre a consulta de CEP no seu sistema</h2>
+            <p className="text-indigo-100 mb-6">API com 100 requisições por dia grátis, sem cartão de crédito.</p>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Link
+                href="/painel/register"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-white text-indigo-700 font-semibold hover:bg-indigo-50 transition-colors"
+              >
+                Criar conta grátis <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/apis/cep"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-white/40 font-semibold hover:bg-white/10 transition-colors"
+              >
+                Ver a API de CEP
+              </Link>
+            </div>
+          </section>
+
+          <nav aria-label="Páginas relacionadas" className="mt-10 text-sm text-slate-600">
+            <p className="font-semibold text-slate-900 mb-2">Relacionados</p>
+            <ul className="flex flex-wrap gap-x-5 gap-y-2">
+              <li>
+                <Link href="/ferramentas/buscar-cep" className="underline hover:text-slate-900">
+                  Buscar CEP por endereço
+                </Link>
+              </li>
+              <li>
+                <Link href="/apis/cep" className="underline hover:text-slate-900">
+                  API de CEP
+                </Link>
+              </li>
+              <li>
+                <Link href="/cep" className="underline hover:text-slate-900">
+                  CEPs por estado
+                </Link>
+              </li>
+              <li>
+                <Link href="/ferramentas/penal" className="underline hover:text-slate-900">
+                  Consultar artigo penal
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="underline hover:text-slate-900">
+                  Blog
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </article>
+      </main>
+    </PublicShell>
+  );
+}

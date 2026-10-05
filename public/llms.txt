@@ -1,39 +1,42 @@
 # Retech Core API - LLMs.txt
 
-## Provider Information
-- Provider Name: The Retech
-- Provider URL: https://core.theretech.com.br
-- Contact Email: suporte@theretech.com.br
-- Description: Hub definitivo de APIs brasileiras. 36 APIs essenciais para desenvolvedores.
+## Provider
+- Name: The Retech (Retech Core)
+- Site: https://core.theretech.com.br
+- API base URL: https://api-core.theretech.com.br
+- Docs (resumo indexável): https://core.theretech.com.br/docs
+- Docs (OpenAPI/Redoc): https://api-core.theretech.com.br/docs
+- OpenAPI spec: https://core.theretech.com.br/openapi-public.yaml
+- Playground (sem cadastro): https://core.theretech.com.br/playground
+- Contact: suporte@theretech.com.br
 
-## API Information
-- API Base URL: https://api-core.theretech.com.br
-- Documentation: https://api-core.theretech.com.br/docs
-- Playground: https://core.theretech.com.br/playground
+## Description
+APIs REST de dados públicos brasileiros para desenvolvedores: CEP (múltiplas fontes com fallback e cache),
+CNPJ (Receita Federal), Geografia (27 UFs e 5.570 municípios do IBGE) e Artigos Penais (Código Penal completo
+e 35 leis especiais, 2.438 dispositivos extraídos dos textos compilados do Planalto).
 
-## Available APIs
-- CEP: Consulta de endereços brasileiros (ViaCEP + Brasil API)
-- CNPJ: Consulta de empresas (Receita Federal)
-- Geografia: 27 estados + 5.570 municípios brasileiros (IBGE)
+## Authentication
+- Header: X-API-Key: <sua_chave>
+- Chave gratuita em https://core.theretech.com.br/painel/register (100 requests/dia, sem cartão)
+- Erros no formato RFC 7807 (type, title, status, detail)
 
-## Features
-- Cache 3 camadas (Redis + MongoDB + APIs externas)
-- Rate limiting configurável
-- Analytics em tempo real
-- Playground interativo sem cadastro
+## APIs
+- CEP: GET /cep/{cep} -> cep, logradouro, complemento, bairro, localidade, uf, ibge, ddd, latitude, longitude
+- CEP (busca reversa): GET /cep/buscar?uf=SP&cidade=São Paulo&logradouro=Paulista
+- CNPJ: GET /cnpj/{numero} -> razão social, situação cadastral, QSA, CNAEs, endereço
+- Geografia: GET /geo/ufs | GET /geo/ufs/{sigla} | GET /geo/municipios?uf=SC | GET /geo/municipios/{uf}
+- Artigos Penais: GET /penal/artigos?q=&tipo=&legislacao=&nivel= (nivel: artigo|paragrafo|inciso|alinea)
+- Artigos Penais: GET /penal/artigos/{codigo} (ex.: 121, CP:121.2.I, DRG:33) | GET /penal/arvore/{idUnico} | GET /penal/search?q=
 
-## Free Tier
-- 1.000 requests/dia
-- Sem cartão de crédito
-- Acesso a 3 APIs principais
+## Public pages (indexable content)
+- API de Artigos Penais: https://core.theretech.com.br/apis/penal
+- Código Penal artigo por artigo: https://core.theretech.com.br/penal/artigos
+- API de CEP: https://core.theretech.com.br/apis/cep
+- CEPs por estado e cidade: https://core.theretech.com.br/cep
+- Ferramentas grátis: /ferramentas/consultar-cep, /ferramentas/buscar-cep, /ferramentas/validar-cnpj, /ferramentas/penal
+- Blog: https://core.theretech.com.br/blog
+- Preços: https://core.theretech.com.br/precos
 
-## Links
-- Landing Page: https://core.theretech.com.br
-- Documentation: https://core.theretech.com.br/painel/docs
-- Status: https://core.theretech.com.br/status
-- Pricing: https://core.theretech.com.br/precos
-
-
-
-
-
+## Plans
+- Free: 100 requests/dia, todas as APIs, sem cartão
+- Planos pagos (Starter, Pro, Business, Enterprise): https://core.theretech.com.br/precos

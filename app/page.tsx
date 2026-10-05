@@ -4,6 +4,12 @@ import LandingFooter from '@/components/landing/footer';
 import ScrollToTop from '@/components/landing/scroll-to-top';
 import PricingPlans from '@/components/pricing/PricingPlans';
 import { apiCatalog, totalApis, liveApis, apiProgressPct } from '@/lib/data/apis';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: { absolute: 'Retech Core - APIs Brasileiras | CEP, CNPJ, Artigos Penais, Geografia' },
+  alternates: { canonical: 'https://core.theretech.com.br' },
+};
 
 /* ─── Dados estáticos ─── */
 const marqueeItems = [

@@ -17,10 +17,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://core.theretech.com.br'),
   title: {
-    default: 'Retech Core - APIs Brasileiras | CEP, CNPJ, Geografia',
-    template: '%s | Retech Core API'
+    default: 'Retech Core - APIs Brasileiras | CEP, CNPJ, Artigos Penais, Geografia',
+    template: '%s | Retech Core'
   },
-  description: 'A API definitiva de dados brasileiros. Consulte CEP, CNPJ, CPF, dados geográficos e mais em uma única integração. Gratuito para começar. Respostas em <100ms.',
+  description: 'APIs de dados públicos brasileiros em uma integração: CEP com fallback automático, CNPJ, geografia IBGE e Código Penal completo (2.438 dispositivos). Grátis para começar.',
   keywords: [
     'api brasil',
     'api cep',
@@ -81,11 +81,9 @@ export const metadata: Metadata = {
   },
   verification: {
     google: '0Odx0AYoSmLkNUPdhi3hdq_v8r2CzNcpMlUuf0Kaac0',
-    yandex: 'your-yandex-verification-code',
   },
-  alternates: {
-    canonical: 'https://core.theretech.com.br',
-  },
+  // canonical NÃO é definido aqui: cada página define o seu em seu layout/page.
+  // (um canonical global faria todas as páginas apontarem para a home)
 };
 
 export default function RootLayout({
@@ -93,50 +91,48 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const schemaOrg = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Retech Core API",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Web",
-    "description": "API definitiva de dados brasileiros: CEP, CNPJ, CPF, Geografia e mais",
-    "url": "https://core.theretech.com.br",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "BRL",
-      "description": "Plano gratuito com 100 requests/dia"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "ratingCount": "127",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
-    "creator": {
+  // JSON-LD global: Organization + WebSite (com SearchAction). Sem aggregateRating:
+  // avaliações só entram no schema quando existirem avaliações reais e verificáveis.
+  const schemaOrg = [
+    {
+      "@context": "https://schema.org",
       "@type": "Organization",
+      "@id": "https://core.theretech.com.br/#organization",
       "name": "The Retech",
-      "url": "https://theretech.com.br"
+      "legalName": "The Retech LTDA",
+      "url": "https://theretech.com.br",
+      "logo": "https://core.theretech.com.br/logo.png",
+      "email": "suporte@theretech.com.br",
+      "address": { "@type": "PostalAddress", "addressLocality": "Florianópolis", "addressRegion": "SC", "addressCountry": "BR" },
+      "sameAs": ["https://theretech.com.br"]
     },
-    "featureList": [
-      "Consulta de CEP",
-      "Validação de CNPJ",
-      "Validação de CPF",
-      "Dados Geográficos IBGE",
-      "30+ APIs Brasileiras",
-      "Cache Inteligente",
-      "Resposta em <100ms"
-    ]
-  };
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://core.theretech.com.br/#website",
+      "url": "https://core.theretech.com.br",
+      "name": "Retech Core",
+      "description": "APIs de dados públicos brasileiros: CEP, CNPJ, geografia e artigos penais.",
+      "inLanguage": "pt-BR",
+      "publisher": { "@id": "https://core.theretech.com.br/#organization" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": { "@type": "EntryPoint", "urlTemplate": "https://core.theretech.com.br/cep/consulta?cep={cep}" },
+        "query-input": "required name=cep"
+      }
+    }
+  ];
 
   return (
     <html lang="pt-BR">
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
-        />
+        {schemaOrg.map((item, i) => (
+          <script
+            key={i}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(item).replace(/</g, '\\u003c') }}
+          />
+        ))}
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

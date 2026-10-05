@@ -18,6 +18,13 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        // www → apex (canonical único; evita conteúdo duplicado)
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.core.theretech.com.br' }],
+        destination: 'https://core.theretech.com.br/:path*',
+        permanent: true,
+      },
+      {
         source: '/termos',
         destination: '/legal/termos',
         permanent: true, // 301 redirect - passa autoridade SEO

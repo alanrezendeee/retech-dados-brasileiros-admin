@@ -1,170 +1,87 @@
 import { MetadataRoute } from 'next';
+import { SITE_URL, CONTENT_UPDATED_AT } from '@/lib/seo/site';
+import { getPenalArtigos, getUFs, getMunicipios, penalSlug, slugify } from '@/lib/seo/api';
+import { getAllPosts } from '@/lib/blog/posts';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://core.theretech.com.br';
-  
-  // Estados brasileiros para gerar páginas automáticas
-  const estados = [
-    'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA',
-    'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN',
-    'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'
-  ];
+// Sitemap gerado no servidor. Regras:
+// - só URLs que existem (nada de /blog/x ou /apis/cnpj inexistentes);
+// - lastModified fixo por conteúdo (CONTENT_UPDATED_AT / data do post), nunca `new Date()` a cada build;
+// - páginas programáticas (artigos penais, UFs, cidades) vêm da API; se a API falhar, o sitemap
+//   ainda é gerado com as páginas estáticas.
+export const revalidate = 86400;
 
-  const routes = [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 1.0,
-    },
-    {
-      url: `${baseUrl}/playground`,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/docs`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-    },
-    // APIs individuais
-    {
-      url: `${baseUrl}/apis/cep`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/apis/cnpj`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/apis/geografia`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/apis/penal`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
+type Entry = MetadataRoute.Sitemap[number];
+
+const fixed = (path: string, priority: number, changeFrequency: Entry['changeFrequency'] = 'monthly', lastModified: string = CONTENT_UPDATED_AT): Entry => ({
+  url: `${SITE_URL}${path}`,
+  lastModified,
+  changeFrequency,
+  priority,
+});
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const entries: Entry[] = [
+    fixed('', 1.0, 'weekly'),
+    // APIs
+    fixed('/apis/penal', 0.9, 'weekly'),
+    fixed('/apis/cep', 0.9, 'weekly'),
     // Ferramentas
-    {
-      url: `${baseUrl}/ferramentas/consultar-cep`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/ferramentas/buscar-cep`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/ferramentas/validar-cnpj`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    },
+    fixed('/ferramentas/penal', 0.8, 'weekly'),
+    fixed('/ferramentas/consultar-cep', 0.8, 'weekly'),
+    fixed('/ferramentas/buscar-cep', 0.8, 'weekly'),
+    fixed('/ferramentas/validar-cnpj', 0.8, 'weekly'),
+    // Hubs de conteúdo
+    fixed('/penal/artigos', 0.9, 'weekly'),
+    fixed('/cep', 0.8, 'weekly'),
+    fixed('/blog', 0.8, 'weekly'),
+    fixed('/docs', 0.8, 'monthly'),
+    fixed('/playground', 0.7, 'monthly'),
     // Institucional
-    {
-      url: `${baseUrl}/sobre`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/contato`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/precos`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/status`,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 0.5,
-    },
-    // Legal
-    {
-      url: `${baseUrl}/legal/termos`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.4,
-    },
-    {
-      url: `${baseUrl}/legal/privacidade`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.4,
-    },
-    // Redirects (para SEO)
-    {
-      url: `${baseUrl}/termos`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/privacidade`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.3,
-    },
-    // Blog
-    {
-      url: `${baseUrl}/blog`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/consultar-cep-gratis`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/api-cep-gratuita`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/validar-cnpj-receita-federal`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/alternativa-viacep`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    },
+    fixed('/precos', 0.7),
+    fixed('/sobre', 0.5),
+    fixed('/contato', 0.5),
+    fixed('/status', 0.4, 'daily'),
+    fixed('/legal/termos', 0.3, 'yearly'),
+    fixed('/legal/privacidade', 0.3, 'yearly'),
   ];
 
-  // Adicionar páginas de estados
-  const estadosPages = estados.map(uf => ({
-    url: `${baseUrl}/geo/estados/${uf.toLowerCase()}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
-  }));
+  // Blog
+  try {
+    for (const p of getAllPosts()) {
+      entries.push(fixed(`/blog/${p.slug}`, 0.7, 'monthly', p.updatedAt ?? p.publishedAt));
+    }
+  } catch {
+    /* registro de posts indisponível */
+  }
 
-  return [...routes, ...estadosPages];
+  // Artigos penais (864 páginas)
+  try {
+    const artigos = await getPenalArtigos();
+    for (const a of artigos) {
+      entries.push(fixed(`/penal/artigo/${penalSlug(a)}`, a.tipo === 'crime' || a.tipo === 'contravencao' ? 0.7 : 0.5, 'monthly'));
+    }
+  } catch {
+    /* API indisponível: sitemap sem páginas de artigo nesta geração */
+  }
+
+  // CEP por UF e cidade (27 + 5.570 páginas)
+  try {
+    const ufs = await getUFs();
+    for (const uf of ufs) {
+      const sigla = uf.sigla.toLowerCase();
+      entries.push(fixed(`/cep/${sigla}`, 0.6, 'monthly'));
+      try {
+        const municipios = await getMunicipios(uf.sigla);
+        for (const m of municipios) {
+          entries.push(fixed(`/cep/${sigla}/${slugify(m.nome)}`, 0.4, 'monthly'));
+        }
+      } catch {
+        /* UF sem municípios nesta geração */
+      }
+    }
+  } catch {
+    /* API indisponível */
+  }
+
+  return entries;
 }
-

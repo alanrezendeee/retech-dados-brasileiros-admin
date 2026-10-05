@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'API de CEP Gratuita - Consulta Rápida de Endereços | Retech Core',
-  description: 'API de CEP com cache inteligente, múltiplas fontes (ViaCEP + Brasil API) e resposta em <50ms. Plano gratuito com 100 requests/dia. Fallback automático e 99.9% uptime.',
+  title: 'API de CEP Gratuita: Consulta de Endereço em JSON com Cache',
+  description:
+    'API de CEP em JSON com várias fontes (ViaCEP, BrasilAPI, OpenCEP), fallback automático e cache em 3 camadas. Busca por CEP ou por endereço. 100 req/dia grátis.',
   keywords: [
     'api cep',
     'api cep gratuita',
@@ -13,31 +14,23 @@ export const metadata: Metadata = {
     'api endereço',
     'webservice cep',
     'rest api cep',
-    'api cep json'
+    'api cep json',
+    'busca cep por endereço api',
+    'brasilapi cep alternativa',
   ],
   openGraph: {
-    title: 'API de CEP Gratuita - Mais Rápida que ViaCEP',
-    description: 'Cache inteligente, fallback automático e resposta em <50ms. 100 requests/dia grátis.',
+    title: 'API de CEP Gratuita: Consulta de Endereço em JSON com Cache',
+    description:
+      'Consulta de CEP e busca reversa por endereço em JSON. ViaCEP, BrasilAPI e OpenCEP com fallback automático e cache em 3 camadas. 100 requisições por dia grátis, sem cartão.',
     type: 'website',
-    images: [
-      {
-        url: '/og-api-cep.png',
-        width: 1200,
-        height: 630,
-        alt: 'API de CEP - Retech Core',
-      },
-    ],
+    url: 'https://core.theretech.com.br/apis/cep',
+    locale: 'pt_BR',
   },
   alternates: {
     canonical: 'https://core.theretech.com.br/apis/cep',
   },
 };
 
-export default function APICEPLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function APICEPLayout({ children }: { children: React.ReactNode }) {
   return children;
 }
-
