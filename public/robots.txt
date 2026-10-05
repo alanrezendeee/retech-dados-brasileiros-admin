@@ -1,28 +1,15 @@
-# Retech Core API - Robots.txt
-# Atualizado: 24 de Outubro de 2025
-
-# Permitir todos os crawlers
+# Retech Core - robots.txt
 User-agent: *
 Allow: /
-
-# Desabilitar crawlers maliciosos
-User-agent: SemrushBot
-User-agent: AhrefsBot
-User-agent: DotBot
-Disallow: /
-
-# Bloquear áreas administrativas
 Disallow: /admin/
 Disallow: /painel/
 Disallow: /api/
 
-# Permitir explicitamente áreas públicas
-Allow: /playground
-Allow: /ferramentas
-Allow: /apis
-Allow: /blog
-Allow: /docs
+# Crawlers de SEO de terceiros (consomem cota sem trazer tráfego)
+User-agent: SemrushBot
+User-agent: AhrefsBot
+User-agent: DotBot
+User-agent: MJ12bot
+Disallow: /
 
-# Sitemap
 Sitemap: https://core.theretech.com.br/sitemap.xml
-
