@@ -4,7 +4,7 @@ import { SITE_URL } from '@/lib/seo/site';
 export const metadata: Metadata = {
   title: 'CEP por estado e cidade: consulte CEPs de todo o Brasil',
   description:
-    'Lista de CEPs por estado e cidade do Brasil. Consulte qualquer CEP com logradouro, bairro, cidade, UF, código IBGE e DDD. Dados dos Correios via API Retech Core.',
+    'Lista de CEPs por estado e cidade do Brasil. Consulte qualquer CEP com logradouro, bairro, cidade, UF, código IBGE e DDD. Dados dos Correios via API RetechHub.',
   keywords: [
     'cep',
     'consultar cep',

@@ -21,7 +21,7 @@
         stroke-width="4"
         stroke-linejoin="round"/>
   
-  <!-- Texto "RC" (Retech Core) -->
+  <!-- Texto "RC" (RetechHub) -->
   <text x="256" y="470" 
         font-family="'Inter', 'Helvetica', sans-serif" 
         font-size="60" 

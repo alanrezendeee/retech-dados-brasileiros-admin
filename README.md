@@ -1,6 +1,6 @@
 # retech-core-admin — Admin & Developer Portal
 
-Frontend React (Next.js 14) para gerenciamento da Retech Core API.
+Frontend React (Next.js 14) para gerenciamento do RetechHub API.
 
 **Domínio**: `core.theretech.com.br`
 
@@ -117,7 +117,7 @@ BACKEND_URL=http://localhost:8080
 NEXT_PUBLIC_API_URL=/api
 
 # App
-NEXT_PUBLIC_APP_NAME=Retech Core
+NEXT_PUBLIC_APP_NAME=RetechHub
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```
 

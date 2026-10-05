@@ -47,7 +47,7 @@ export function ogImage({ title, subtitle, badge, accent = '#00e676' }: OgProps)
             R
           </div>
           <div style={{ display: 'flex', fontSize: 30, fontWeight: 700, letterSpacing: -0.5 }}>
-            Retech<span style={{ color: accent }}>Core</span>
+            Retech<span style={{ color: accent }}>Hub</span>
           </div>
           {badge ? (
             <div

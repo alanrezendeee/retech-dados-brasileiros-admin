@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://core.theretech.com.br'),
   title: {
-    default: 'Retech Core - APIs Brasileiras | CEP, CNPJ, Artigos Penais, Geografia',
-    template: '%s | Retech Core'
+    default: 'RetechHub - APIs Brasileiras | CEP, CNPJ, Artigos Penais, Geografia',
+    template: '%s | RetechHub'
   },
   description: 'APIs de dados públicos brasileiros em uma integração: CEP com fallback automático, CNPJ, geografia IBGE e Código Penal completo (2.438 dispositivos). Grátis para começar.',
   keywords: [
@@ -49,23 +49,14 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'pt_BR',
     url: 'https://core.theretech.com.br',
-    title: 'Retech Core - 30+ APIs Brasileiras em uma só',
+    title: 'RetechHub - 30+ APIs Brasileiras em uma só',
     description: 'CEP, CNPJ, CPF, Geografia e mais. Gratuito para começar. Respostas em <100ms.',
-    siteName: 'Retech Core API',
-    images: [
-      {
-        url: 'https://core.theretech.com.br/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Retech Core API - 30+ APIs Brasileiras',
-      },
-    ],
+    siteName: 'RetechHub',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Retech Core - APIs Brasileiras',
+    title: 'RetechHub - APIs Brasileiras',
     description: '30+ APIs de dados brasileiros em uma integração. Gratuito para começar.',
-    images: ['https://core.theretech.com.br/twitter-card.png'],
     creator: '@theretech',
   },
   robots: {
@@ -111,7 +102,7 @@ export default function RootLayout({
       "@type": "WebSite",
       "@id": "https://core.theretech.com.br/#website",
       "url": "https://core.theretech.com.br",
-      "name": "Retech Core",
+      "name": "RetechHub",
       "description": "APIs de dados públicos brasileiros: CEP, CNPJ, geografia e artigos penais.",
       "inLanguage": "pt-BR",
       "publisher": { "@id": "https://core.theretech.com.br/#organization" },

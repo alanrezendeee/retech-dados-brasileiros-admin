@@ -8,7 +8,7 @@ export default function PublicFooter() {
     { title: 'APIs', links: PUBLIC_NAV.apis },
     { title: 'Ferramentas grátis', links: PUBLIC_NAV.ferramentas },
     { title: 'Conteúdo', links: PUBLIC_NAV.conteudo },
-    { title: 'Retech Core', links: PUBLIC_NAV.institucional },
+    { title: 'RetechHub', links: PUBLIC_NAV.institucional },
   ];
   return (
     <footer className="bg-slate-950 text-slate-300 border-t border-white/10">
@@ -16,7 +16,7 @@ export default function PublicFooter() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-10">
           <div className="col-span-2 md:col-span-1">
             <p className="text-white font-bold text-lg mb-3">
-              Retech<span className="text-emerald-400">Core</span>
+              Retech<span className="text-emerald-400">Hub</span>
             </p>
             <p className="text-sm text-slate-400 leading-relaxed">
               APIs de dados públicos brasileiros: CEP, CNPJ, geografia e artigos penais. Textos oficiais, cache

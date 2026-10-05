@@ -43,10 +43,10 @@ export default function PublicHeader() {
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200">
       <div className="container max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2.5 shrink-0" aria-label="Retech Core - página inicial">
-          <Image src="/logo-retechhub.svg" alt="Retech Core" width={32} height={32} />
+        <Link href="/" className="flex items-center gap-2.5 shrink-0" aria-label="RetechHub - página inicial">
+          <Image src="/logo-retechhub.svg" alt="RetechHub" width={32} height={32} />
           <span className="font-bold text-lg tracking-tight text-slate-900">
-            Retech<span className="text-emerald-600">Core</span>
+            Retech<span className="text-emerald-600">Hub</span>
           </span>
         </Link>
         <nav aria-label="Principal" className="hidden md:flex items-center gap-1">

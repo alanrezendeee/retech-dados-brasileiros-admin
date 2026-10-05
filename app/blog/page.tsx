@@ -35,7 +35,7 @@ export default function BlogIndexPage() {
     '@type': 'Blog',
     '@id': `${SITE_URL}/blog`,
     url: `${SITE_URL}/blog`,
-    name: 'Blog Retech Core',
+    name: 'Blog RetechHub',
     description: 'Tutoriais e guias sobre CEP, CNPJ e artigos penais para desenvolvedores e equipes jurídicas.',
     inLanguage: 'pt-BR',
     publisher: { '@type': 'Organization', name: ORGANIZATION.name, url: ORGANIZATION.url, logo: { '@type': 'ImageObject', url: ORGANIZATION.logo } },
@@ -55,7 +55,7 @@ export default function BlogIndexPage() {
         <Breadcrumb items={[{ label: 'Blog' }]} className="mb-6" />
 
         <header className="max-w-3xl">
-          <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">Blog Retech Core</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">Blog RetechHub</h1>
           <p className="mt-4 text-lg text-slate-600 leading-relaxed">
             Guias práticos sobre dados brasileiros para quem constrói software: CEP, CNPJ e Código Penal explicados do jeito que um
             desenvolvedor ou um analista precisa usar no dia a dia.
@@ -66,7 +66,7 @@ export default function BlogIndexPage() {
           <p>
             Este blog nasceu das dúvidas que recebemos de quem integra a <Link href="/apis/cep" className="text-emerald-700 underline">API de CEP</Link>, a{' '}
             <Link href="/apis/penal" className="text-emerald-700 underline">API de Artigos Penais</Link> e as{' '}
-            <Link href="/ferramentas/consultar-cep" className="text-emerald-700 underline">ferramentas gratuitas</Link> da Retech Core. Em vez de
+            <Link href="/ferramentas/consultar-cep" className="text-emerald-700 underline">ferramentas gratuitas</Link> do RetechHub. Em vez de
             responder a mesma pergunta por e-mail dezenas de vezes, documentamos aqui o que aprendemos mantendo uma base de CEPs com
             múltiplas fontes, um validador de CNPJ e uma coleção de 2.438 dispositivos penais do Código Penal e de 35 leis especiais.
           </p>

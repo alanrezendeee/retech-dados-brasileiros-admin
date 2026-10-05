@@ -33,7 +33,7 @@ const FAQ = [
   {
     question: 'Como consultar CEP via API?',
     answer:
-      'A API de CEP da Retech Core responde em JSON com logradouro, bairro, cidade, UF, código IBGE e DDD. Basta uma chamada GET para /cep/{cep} enviando sua chave no header X-API-Key. O plano gratuito permite 100 consultas por dia.',
+      'A API de CEP do RetechHub responde em JSON com logradouro, bairro, cidade, UF, código IBGE e DDD. Basta uma chamada GET para /cep/{cep} enviando sua chave no header X-API-Key. O plano gratuito permite 100 consultas por dia.',
   },
 ];
 
@@ -117,7 +117,7 @@ export default async function CepHubPage() {
             <Link href="/apis/cep" className="text-emerald-700 hover:underline">
               API de CEP
             </Link>{' '}
-            da Retech Core.
+            do RetechHub.
           </p>
         </section>
 

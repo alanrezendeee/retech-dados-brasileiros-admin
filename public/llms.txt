@@ -1,7 +1,7 @@
-# Retech Core API - LLMs.txt
+# RetechHub API - LLMs.txt
 
 ## Provider
-- Name: The Retech (Retech Core)
+- Name: The Retech (RetechHub)
 - Site: https://core.theretech.com.br
 - API base URL: https://api-core.theretech.com.br
 - Docs (resumo indexável): https://core.theretech.com.br/docs

@@ -123,7 +123,7 @@ export default function ConsultarPenalPage() {
             mesmo artigo.
           </P>
           <P>
-            Esta ferramenta consulta a base de artigos penais da Retech Core e mostra, para cada dispositivo, a
+            Esta ferramenta consulta a base de artigos penais do RetechHub e mostra, para cada dispositivo, a
             descrição (o nome usual do crime), o texto integral, o tipo, a legislação, a pena e a localização no
             título e capítulo da norma. Também exibe o identificador único do dispositivo, útil para citar com
             precisão ou para integrar com a{' '}

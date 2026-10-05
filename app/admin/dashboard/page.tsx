@@ -248,7 +248,7 @@ export default function AdminDashboardPage() {
         <div>
           <h1 className="text-3xl font-bold text-slate-900">Dashboard</h1>
           <p className="text-slate-500 mt-1">
-            Visão geral do sistema Retech Core API
+            Visão geral do sistema RetechHub API
           </p>
         </div>
 

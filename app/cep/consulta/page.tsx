@@ -71,7 +71,7 @@ function FormPage() {
         <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Consultar CEP</h1>
         <p className="text-lg text-slate-600 leading-relaxed mb-6">
           Informe um CEP de 8 dígitos para ver o endereço completo: logradouro, bairro, cidade, estado, código IBGE
-          e DDD. A consulta usa a base dos Correios por meio da API Retech Core.
+          e DDD. A consulta usa a base dos Correios por meio da API RetechHub.
         </p>
         <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 mb-10">
           <CepSearchForm />
@@ -262,7 +262,7 @@ export default async function CepConsultaPage({ searchParams }: { searchParams: 
                 Consulte este CEP via API
               </h2>
               <p className="text-slate-400 text-sm mb-4">
-                A API de CEP da Retech Core devolve os mesmos dados em JSON. Plano gratuito com 100 consultas por
+                A API de CEP do RetechHub devolve os mesmos dados em JSON. Plano gratuito com 100 consultas por
                 dia; cadastro em menos de um minuto.
               </p>
               <pre className="overflow-x-auto rounded-lg bg-black/40 p-4 text-xs md:text-sm mb-3">

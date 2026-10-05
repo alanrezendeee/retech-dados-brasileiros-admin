@@ -126,7 +126,7 @@ validarCnpj('11.222.333/0001-80'); // false`}</Code>
         que envolvem risco (crédito, fornecedores, emissão de notas, marketplaces) precisam de uma segunda etapa: a consulta cadastral.
       </p>
       <p>
-        A <Link href="/ferramentas/validar-cnpj">ferramenta de validação de CNPJ</Link> da Retech Core faz as duas etapas: primeiro
+        A <Link href="/ferramentas/validar-cnpj">ferramenta de validação de CNPJ</Link> do RetechHub faz as duas etapas: primeiro
         verifica os dígitos e, se o número for válido, consulta os dados cadastrais e exibe razão social, situação, endereço,
         atividades e sócios.
       </p>

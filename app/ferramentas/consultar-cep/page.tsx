@@ -30,7 +30,7 @@ const faqs: FaqItem[] = [
   {
     question: 'De onde vêm os dados de endereço?',
     answer:
-      'A consulta passa pela API de CEP da Retech Core, que combina três fontes públicas (ViaCEP, BrasilAPI e OpenCEP): a consulta em tempo real usa o ViaCEP com troca automática para a BrasilAPI, e a base própria é alimentada em segundo plano pelas três. Os resultados ficam em cache próprio. O rótulo Fonte no resultado indica de onde veio aquela resposta.',
+      'A consulta passa pela API de CEP do RetechHub, que combina três fontes públicas (ViaCEP, BrasilAPI e OpenCEP): a consulta em tempo real usa o ViaCEP com troca automática para a BrasilAPI, e a base própria é alimentada em segundo plano pelas três. Os resultados ficam em cache próprio. O rótulo Fonte no resultado indica de onde veio aquela resposta.',
   },
   {
     question: 'Por que o logradouro veio vazio?',

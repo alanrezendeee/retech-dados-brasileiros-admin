@@ -50,7 +50,7 @@ const faqs: FaqItem[] = [
   {
     question: 'De onde vêm os dados?',
     answer:
-      'A busca reversa usa a API de CEP da Retech Core, que consulta fontes públicas de CEP com troca automática em caso de falha e guarda os resultados em cache. O rótulo Fonte no resultado indica a origem de cada resposta.',
+      'A busca reversa usa a API de CEP do RetechHub, que consulta fontes públicas de CEP com troca automática em caso de falha e guarda os resultados em cache. O rótulo Fonte no resultado indica a origem de cada resposta.',
   },
   {
     question: 'Posso copiar o CEP encontrado?',
@@ -128,7 +128,7 @@ export default function BuscarCEPPage() {
             <Link href="/apis/cep" className="text-indigo-700 underline">
               API de CEP
             </Link>{' '}
-            da Retech Core com os parâmetros <code>uf</code>, <code>cidade</code> e <code>logradouro</code>. A API
+            do RetechHub com os parâmetros <code>uf</code>, <code>cidade</code> e <code>logradouro</code>. A API
             valida os campos (UF com 2 letras, cidade e logradouro com pelo menos 3 caracteres), verifica se já há
             um resultado em cache para essa combinação e, se não houver, consulta as fontes públicas de CEP. A
             resposta é uma lista com até 50 endereços, cada um com seu CEP.

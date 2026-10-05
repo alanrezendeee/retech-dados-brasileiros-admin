@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Retech Core - Brazilian Data API
+  title: RetechHub - Brazilian Data API
   version: 1.0.0
   description: |
     Complete Brazilian data API: CEP, CNPJ, Geography. 

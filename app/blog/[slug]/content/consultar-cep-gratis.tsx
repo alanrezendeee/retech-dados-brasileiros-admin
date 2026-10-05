@@ -13,7 +13,7 @@ export default function ConsultarCepGratis() {
 
       <h2 id="como-consultar">Como consultar CEP grátis agora</h2>
       <p>
-        A forma mais rápida é usar a <Link href="/ferramentas/consultar-cep">ferramenta de consulta de CEP</Link> da Retech Core:
+        A forma mais rápida é usar a <Link href="/ferramentas/consultar-cep">ferramenta de consulta de CEP</Link> do RetechHub:
         digite os oito dígitos, com ou sem hífen, e o resultado mostra logradouro, bairro, cidade, estado, código IBGE do município e
         DDD. Não é preciso cadastro. A consulta usa a mesma <Link href="/apis/cep">API de CEP</Link> que atende aplicações em produção,
         com várias fontes de dados e cache, então o resultado costuma aparecer em menos de um segundo.
@@ -297,7 +297,7 @@ export default function ConsultarCepGratis() {
           {
             question: 'Consultar CEP pela API é grátis?',
             answer:
-              'Sim. O plano gratuito da Retech Core permite 100 requisições por dia com uma chave de API criada sem cartão de crédito. A ferramenta online de consulta não tem limite para uso manual.',
+              'Sim. O plano gratuito do RetechHub permite 100 requisições por dia com uma chave de API criada sem cartão de crédito. A ferramenta online de consulta não tem limite para uso manual.',
           },
         ]}
       />

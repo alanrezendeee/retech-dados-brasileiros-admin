@@ -1,6 +1,6 @@
 // Constantes de SEO compartilhadas pelas páginas públicas.
 export const SITE_URL = 'https://core.theretech.com.br';
-export const SITE_NAME = 'Retech Core';
+export const SITE_NAME = 'RetechHub';
 export const API_DOCS_URL = process.env.NEXT_PUBLIC_DOCS_URL || 'https://api-core.theretech.com.br/docs';
 export const API_PUBLIC_BASE = 'https://api-core.theretech.com.br';
 

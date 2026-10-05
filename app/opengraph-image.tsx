@@ -9,6 +9,6 @@ export default function Image() {
   return ogImage({
     title: 'APIs de dados públicos brasileiros',
     subtitle: 'CEP, CNPJ, geografia e Código Penal completo em uma integração. Grátis para começar.',
-    badge: 'Retech Core',
+    badge: 'RetechHub',
   });
 }

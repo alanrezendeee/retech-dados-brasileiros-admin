@@ -92,7 +92,7 @@ export default function PainelRegisterPage() {
             Criar Conta Gratuita
           </h1>
           <p className="text-slate-600">
-            Comece a usar a Retech Core API em segundos
+            Comece a usar o RetechHub API em segundos
           </p>
         </div>
 
@@ -365,7 +365,7 @@ export default function PainelRegisterPage() {
 
         {/* Footer */}
         <div className="mt-8 text-center text-sm text-slate-500">
-          <p>© 2025 Retech Core. Todos os direitos reservados.</p>
+          <p>© 2025 RetechHub. Todos os direitos reservados.</p>
         </div>
       </div>
     </div>

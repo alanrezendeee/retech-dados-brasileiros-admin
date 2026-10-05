@@ -101,7 +101,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
       type: 'article',
       url: canonical,
       locale: 'pt_BR',
-      siteName: 'Retech Core',
+      siteName: 'RetechHub',
       publishedTime: iso,
       modifiedTime: iso,
       section: artigo.legislacaoNome,
@@ -271,7 +271,7 @@ export default async function PenalArtigoPage({ params }: { params: Promise<Para
     inLanguage: 'pt-BR',
     datePublished: iso,
     dateModified: iso,
-    isPartOf: { '@type': 'WebSite', name: 'Retech Core', url: SITE_URL },
+    isPartOf: { '@type': 'WebSite', name: 'RetechHub', url: SITE_URL },
     about: { '@type': 'Legislation', name: h1, legislationIdentifier: artigo.codigoFormatado },
     publisher: { '@type': 'Organization', name: 'The Retech', url: 'https://theretech.com.br' },
   };
@@ -517,7 +517,7 @@ export default async function PenalArtigoPage({ params }: { params: Promise<Para
               Use o {nomeCurto} via API
             </h2>
             <p className="mt-2 text-sm text-slate-300 leading-relaxed">
-              O mesmo dispositivo, em JSON, pela API de Artigos Penais do Retech Core. O identificador único deste artigo é{' '}
+              O mesmo dispositivo, em JSON, pela API de Artigos Penais do RetechHub. O identificador único deste artigo é{' '}
               <code className="rounded bg-slate-800 px-1.5 py-0.5 text-emerald-300">{artigo.idUnico}</code>.
             </p>
             <pre className="mt-4 overflow-x-auto rounded-lg bg-slate-950 p-4 text-xs">

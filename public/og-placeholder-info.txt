@@ -11,7 +11,7 @@ Ferramenta recomendada: Canva.com (templates prontos)
 ### 1. **og-image.png** (Imagem Geral)
 **Usar em:** Homepage
 **Conteúdo sugerido:**
-- Logo da Retech Core
+- Logo do RetechHub
 - Texto: "30+ APIs Brasileiras"
 - Subtexto: "CEP, CNPJ, Geografia e mais"
 - Background: Gradiente azul/roxo
@@ -67,7 +67,7 @@ Ferramenta recomendada: Canva.com (templates prontos)
 
 ---
 
-## 🎨 Paleta de Cores Retech Core
+## 🎨 Paleta de Cores RetechHub
 
 **Primárias:**
 - Azul: #2563EB (blue-600)

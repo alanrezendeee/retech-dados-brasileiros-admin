@@ -8,7 +8,7 @@ export default function ApiCepGratuita() {
       <p>
         Preencher o endereço automaticamente a partir do CEP é um dos recursos mais simples e mais valiosos de um formulário. Reduz
         erros de digitação, acelera o cadastro e melhora a taxa de conversão em checkouts. Este tutorial mostra como consultar um
-        endereço por CEP usando a <Link href="/apis/cep">API de CEP da Retech Core</Link>, que tem plano gratuito, em três linguagens:
+        endereço por CEP usando a <Link href="/apis/cep">API de CEP do RetechHub</Link>, que tem plano gratuito, em três linguagens:
         Node.js, PHP e Python. Também cobre o tratamento correto de erros e dicas de cache para não gastar requisições à toa.
       </p>
 

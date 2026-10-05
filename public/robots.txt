@@ -1,4 +1,4 @@
-# Retech Core - robots.txt
+# RetechHub - robots.txt
 User-agent: *
 Allow: /
 Disallow: /admin/
