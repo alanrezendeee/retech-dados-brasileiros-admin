@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     'api barata'
   ],
   openGraph: {
-    title: 'Planos e Preços - Retech Core API',
+    title: 'Planos e Preços - RetechHub API',
     description: 'Plano Free: R$ 0 com 100 requests/dia | Starter: R$ 29 | Pro: R$ 79 | Business: R$ 199',
     type: 'website',
   },

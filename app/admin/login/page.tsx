@@ -189,7 +189,7 @@ export default function AdminLoginPage() {
 
         {/* Footer */}
         <div className="mt-8 text-center text-sm text-slate-500">
-          <p>© 2025 Retech Core. Todos os direitos reservados.</p>
+          <p>© 2025 RetechHub. Todos os direitos reservados.</p>
         </div>
       </div>
     </div>

@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Admin - Retech Core',
-  description: 'Painel administrativo Retech Core API',
+  title: 'Admin - RetechHub',
+  description: 'Painel administrativo RetechHub API',
 };
 
 export default function AdminRootLayout({

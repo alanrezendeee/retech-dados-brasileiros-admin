@@ -32,14 +32,14 @@ const P = ({ children }: { children: React.ReactNode }) => <p className="text-sl
 
 const faqs: FaqItem[] = [
   {
-    question: 'O que é a API de CEP da Retech Core?',
+    question: 'O que é a API de CEP do RetechHub?',
     answer:
       'É uma API REST que recebe um CEP de 8 dígitos e devolve o endereço em JSON: logradouro, complemento, bairro, cidade, UF, código IBGE do município, DDD e, quando disponível, latitude e longitude. Também faz o caminho inverso: a partir de UF, cidade e logradouro, devolve a lista de CEPs correspondentes.',
   },
   {
     question: 'Qual a diferença para usar o ViaCEP ou a BrasilAPI diretamente?',
     answer:
-      'A Retech Core usa ViaCEP, BrasilAPI e OpenCEP como fontes: na consulta em tempo real troca automaticamente do ViaCEP para a BrasilAPI quando uma delas falha ou demora, e em segundo plano um crawler alterna entre as três para alimentar a base própria. O resultado é guardado em cache em três camadas (Redis, MongoDB e PostgreSQL), então a maior parte das consultas não depende de nenhum provedor externo. Você integra um único contrato de resposta e ganha chave de API, painel de uso e limites previsíveis.',
+      'O RetechHub usa ViaCEP, BrasilAPI e OpenCEP como fontes: na consulta em tempo real troca automaticamente do ViaCEP para a BrasilAPI quando uma delas falha ou demora, e em segundo plano um crawler alterna entre as três para alimentar a base própria. O resultado é guardado em cache em três camadas (Redis, MongoDB e PostgreSQL), então a maior parte das consultas não depende de nenhum provedor externo. Você integra um único contrato de resposta e ganha chave de API, painel de uso e limites previsíveis.',
   },
   {
     question: 'Qual é o tempo de resposta?',
@@ -97,7 +97,7 @@ export default function APICEPPage() {
   const webApi = {
     '@context': 'https://schema.org',
     '@type': 'WebAPI',
-    name: 'API de CEP - Retech Core',
+    name: 'API de CEP - RetechHub',
     description:
       'API REST de consulta de CEP e busca de CEP por endereço, em JSON, com múltiplas fontes (ViaCEP, BrasilAPI, OpenCEP), fallback automático e cache em três camadas.',
     url: absoluteUrl('/apis/cep'),
@@ -208,7 +208,7 @@ export default function APICEPPage() {
             entregas com dados consistentes.
           </P>
           <P>
-            A API de CEP da Retech Core expõe essa consulta como um endpoint HTTP com resposta em JSON. Você envia o
+            A API de CEP do RetechHub expõe essa consulta como um endpoint HTTP com resposta em JSON. Você envia o
             CEP e recebe o endereço estruturado, com o código IBGE do município (útil para integrações com notas
             fiscais e sistemas públicos), o DDD da região e, quando disponível, as coordenadas geográficas. O endpoint
             de busca reversa resolve o problema oposto: quando a pessoa sabe a rua e a cidade, mas não o CEP.
@@ -455,10 +455,10 @@ for item in buscar_por_endereco("SP", "São Paulo", "Paulista"):
             <li>Sem contrato de fidelidade: upgrade e downgrade direto no painel.</li>
           </ul>
 
-          <H2 id="comparacao">Comparação: Retech Core, ViaCEP e BrasilAPI</H2>
+          <H2 id="comparacao">Comparação: RetechHub, ViaCEP e BrasilAPI</H2>
           <P>
-            ViaCEP e BrasilAPI são serviços públicos, gratuitos e amplamente usados, e a própria Retech Core os consulta
-            como fontes. A diferença está no que fica em volta da consulta: a Retech Core adiciona troca automática de
+            ViaCEP e BrasilAPI são serviços públicos, gratuitos e amplamente usados, e a própria RetechHub os consulta
+            como fontes. A diferença está no que fica em volta da consulta: o RetechHub adiciona troca automática de
             fonte, cache próprio, autenticação por chave com escopos, painel de uso e um contrato de resposta único
             que inclui a busca reversa. Para um script pontual, chamar o ViaCEP direto é perfeitamente razoável. Para
             um produto em produção, que precisa de previsibilidade e de um ponto único de integração, a camada
@@ -470,7 +470,7 @@ for item in buscar_por_endereco("SP", "São Paulo", "Paulista"):
                 <tr>
                   <th className="p-3 font-semibold">Critério</th>
                   <th className="p-3 font-semibold">ViaCEP / BrasilAPI (direto)</th>
-                  <th className="p-3 font-semibold">Retech Core</th>
+                  <th className="p-3 font-semibold">RetechHub</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200 text-slate-600">

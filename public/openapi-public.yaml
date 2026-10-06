@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Retech Core API - Public Endpoints (No Auth Required)
+  title: RetechHub API - Public Endpoints (No Auth Required)
   version: 1.0.0
   description: |
     **Free Brazilian Data API - No Authentication Required**

@@ -131,7 +131,7 @@ export default function PainelDashboardPage() {
             Bem-vindo, {user?.name}! 👋
           </h1>
           <p className="text-slate-500 mt-1">
-            Gerencie suas API Keys e monitore o uso da Retech Core API
+            Gerencie suas API Keys e monitore o uso do RetechHub API
           </p>
         </div>
 

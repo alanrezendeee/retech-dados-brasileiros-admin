@@ -1,4 +1,4 @@
-# SEO Retech Core — Análise e Roadmap
+# SEO RetechHub — Análise e Roadmap
 
 **Data:** 2026-10-05 · **Autor:** Alan Rezende (com Claude Code) · **Site:** https://core.theretech.com.br
 **Implementação:** [API PR #2](https://github.com/alanrezendeee/retech-dados-brasileiros-api/pull/2) · [Admin PR #2](https://github.com/alanrezendeee/retech-dados-brasileiros-admin/pull/2)
@@ -65,7 +65,7 @@ As cinco primeiras destravam a indexação e cabem em uma tarde.
 
 - [ ] Publicar um post no TabNews apresentando a API de artigos penais (formato "criei uma API de…"), com link para `/apis/penal`.
 - [ ] Publicar no TabNews e no dev.to um post sobre a API de CEP com fallback e cache, com benchmark contra ViaCEP e BrasilAPI.
-- [ ] Abrir PR nas listas `awesome-brasil` / `public-apis` / `apis-brasileiras` no GitHub adicionando a Retech Core.
+- [ ] Abrir PR nas listas `awesome-brasil` / `public-apis` / `apis-brasileiras` no GitHub adicionando o RetechHub.
 - [ ] Criar repositório público `theretech/retech-core-examples` com exemplos em Node, PHP e Python apontando para o site.
 
 **Contínuo**
@@ -102,7 +102,7 @@ Todos os 18 itens estão implementados (API PR #2 e Admin PR #2). Build local: 1
 ### Convenções para páginas públicas novas
 
 - Server component dentro de `PublicShell`, com `Breadcrumb`, `Faq` (FAQ visível + `FAQPage`) e `JsonLd`.
-- `layout.tsx` com `title` (sem sufixo "| Retech Core": o template do root adiciona), `description` de 150 a 160 caracteres e `alternates.canonical` exato. O root layout **não** define canonical.
+- `layout.tsx` com `title` (sem sufixo "| RetechHub": o template do root adiciona), `description` de 150 a 160 caracteres e `alternates.canonical` exato. O root layout **não** define canonical.
 - Dados server-side via `lib/seo/api.ts` (usa `SEO_API_KEY` + `BACKEND_URL`).
 - Nunca `aggregateRating` sem avaliações reais.
 - Toda página nova entra em `app/sitemap.ts` com `lastModified` fixo.

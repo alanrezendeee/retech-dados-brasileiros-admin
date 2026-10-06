@@ -71,7 +71,7 @@ const legislacoes: { nome: string; lei: string }[] = [
 
 const faqs: FaqItem[] = [
   {
-    question: 'O que é a API de Artigos Penais da Retech Core?',
+    question: 'O que é a API de Artigos Penais do RetechHub?',
     answer:
       'É uma API REST que devolve, em JSON, o texto e os metadados de dispositivos penais brasileiros: artigos, parágrafos, incisos e alíneas do Código Penal e de 35 leis especiais. Cada registro traz descrição, texto completo, tipo (crime, contravenção, disposição ou revogado), legislação, pena mínima e máxima e um identificador único estável.',
   },
@@ -136,7 +136,7 @@ export default function APIPenalPage() {
   const webApi = {
     '@context': 'https://schema.org',
     '@type': 'WebAPI',
-    name: 'API de Artigos Penais - Retech Core',
+    name: 'API de Artigos Penais - RetechHub',
     description:
       'API REST com 2.438 dispositivos penais brasileiros (Código Penal e 35 leis especiais) em JSON: artigos, parágrafos, incisos, alíneas, tipo, legislação e penas.',
     url: absoluteUrl('/apis/penal'),

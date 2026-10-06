@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     type: 'website',
     url: `${SITE_URL}/penal/artigos`,
     locale: 'pt_BR',
-    siteName: 'Retech Core',
+    siteName: 'RetechHub',
   },
 };
 

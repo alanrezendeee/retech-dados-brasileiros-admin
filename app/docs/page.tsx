@@ -77,7 +77,7 @@ export default function DocsPage() {
   const ld = {
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
-    headline: 'Documentação da API Retech Core',
+    headline: 'Documentação da API RetechHub',
     description:
       'Referência da API REST de dados brasileiros: autenticação, endpoints de CEP, CNPJ, geografia e artigos penais, erros e limites.',
     url: `${SITE_URL}/docs`,
@@ -86,7 +86,7 @@ export default function DocsPage() {
     proficiencyLevel: 'Beginner',
     author: { '@type': 'Organization', name: ORGANIZATION.name, url: ORGANIZATION.url },
     publisher: { '@type': 'Organization', name: ORGANIZATION.name, url: ORGANIZATION.url, logo: { '@type': 'ImageObject', url: ORGANIZATION.logo } },
-    about: { '@type': 'SoftwareApplication', name: 'Retech Core API', applicationCategory: 'DeveloperApplication', url: SITE_URL },
+    about: { '@type': 'SoftwareApplication', name: 'RetechHub API', applicationCategory: 'DeveloperApplication', url: SITE_URL },
   };
 
   return (
@@ -120,7 +120,7 @@ export default function DocsPage() {
 
           <article className="max-w-3xl">
             <header className="mb-10">
-              <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Documentação da API Retech Core</h1>
+              <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Documentação da API RetechHub</h1>
               <p className="text-lg text-slate-600 leading-relaxed">
                 Guia de integração da API REST de dados públicos brasileiros: consulta de CEP, CNPJ, geografia do
                 IBGE e artigos do Código Penal e de leis especiais. Todas as respostas são em JSON e todas as
@@ -131,7 +131,7 @@ export default function DocsPage() {
             <section id="introducao" className="mb-12">
               <h2 className="text-2xl font-bold mb-3">Introdução</h2>
               <p className="text-slate-700 leading-relaxed mb-3">
-                A Retech Core reúne em uma única API dados que normalmente exigem várias integrações: a base de CEPs
+                O RetechHub reúne em uma única API dados que normalmente exigem várias integrações: a base de CEPs
                 dos Correios, o cadastro de CNPJ da Receita Federal, a malha de estados e municípios do IBGE e os
                 textos compilados da legislação penal publicados pelo Planalto. Cada domínio tem seu próprio grupo
                 de endpoints, mas o formato das respostas, o tratamento de erros e os limites de uso são iguais em

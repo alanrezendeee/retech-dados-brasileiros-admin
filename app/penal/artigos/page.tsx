@@ -33,7 +33,7 @@ const FAQ: FaqItem[] = [
   {
     question: 'Como consultar esses artigos pela API?',
     answer:
-      'A API de Artigos Penais do Retech Core expõe os mesmos dados em JSON. Liste artigos com GET /penal/artigos (filtros por legislação, tipo e texto), busque um dispositivo com GET /penal/artigos/{idUnico} (ex.: CP:121) e obtenha o artigo com todos os parágrafos, incisos e alíneas com GET /penal/arvore/{idUnico}. Basta criar uma conta gratuita, gerar uma chave e enviar o header X-API-Key.',
+      'A API de Artigos Penais do RetechHub expõe os mesmos dados em JSON. Liste artigos com GET /penal/artigos (filtros por legislação, tipo e texto), busque um dispositivo com GET /penal/artigos/{idUnico} (ex.: CP:121) e obtenha o artigo com todos os parágrafos, incisos e alíneas com GET /penal/arvore/{idUnico}. Basta criar uma conta gratuita, gerar uma chave e enviar o header X-API-Key.',
   },
 ];
 
@@ -111,7 +111,7 @@ export default async function PenalArtigosHubPage() {
             que deixaram de vigorar, mantidos no índice porque continuam a ser citados em decisões e doutrina.
           </p>
           <p>
-            O conteúdo é o mesmo servido pela API de Artigos Penais do Retech Core, usada por sistemas jurídicos,
+            O conteúdo é o mesmo servido pela API de Artigos Penais do RetechHub, usada por sistemas jurídicos,
             escritórios e aplicações de pesquisa para consultar dispositivos penais de forma estruturada. Para integrar
             esses dados ao seu software, veja a <Link href="/apis/penal" className="text-emerald-700 underline underline-offset-2 hover:text-emerald-900">página da API</Link>,
             a <Link href={API_DOCS_URL} className="text-emerald-700 underline underline-offset-2 hover:text-emerald-900">documentação</Link> ou

@@ -29,7 +29,7 @@ export default function PrivacidadePage() {
         <Alert className="mb-8 border-blue-200 bg-blue-50">
           <Shield className="w-5 h-5" />
           <AlertDescription className="text-slate-700">
-            <strong>Conformidade com LGPD:</strong> A Retech Core respeita a Lei Geral de Proteção de Dados (Lei nº 13.709/2018). 
+            <strong>Conformidade com LGPD:</strong> O RetechHub respeita a Lei Geral de Proteção de Dados (Lei nº 13.709/2018). 
             Seus dados pessoais são tratados com segurança e você tem direitos garantidos sobre eles.
           </AlertDescription>
         </Alert>
@@ -413,7 +413,7 @@ export default function PrivacidadePage() {
           <Alert className="bg-blue-50 border-blue-200">
             <Shield className="w-5 h-5 text-blue-600" />
             <AlertDescription className="text-slate-700">
-              <strong>Ao usar a Retech Core API, você declara ter lido, compreendido e aceito esta Política de Privacidade.</strong>
+              <strong>Ao usar o RetechHub API, você declara ter lido, compreendido e aceito esta Política de Privacidade.</strong>
             </AlertDescription>
           </Alert>
         </div>

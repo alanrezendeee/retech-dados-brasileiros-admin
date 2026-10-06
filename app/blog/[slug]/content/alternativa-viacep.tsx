@@ -68,9 +68,9 @@ export default function AlternativaViacep() {
         </li>
       </ol>
 
-      <h2 id="como-funciona-o-fallback">Como funciona o fallback automático na API de CEP da Retech Core</h2>
+      <h2 id="como-funciona-o-fallback">Como funciona o fallback automático na API de CEP do RetechHub</h2>
       <p>
-        A <Link href="/apis/cep">API de CEP da Retech Core</Link> foi desenhada em torno dessa lista. Uma consulta a{' '}
+        A <Link href="/apis/cep">API de CEP do RetechHub</Link> foi desenhada em torno dessa lista. Uma consulta a{' '}
         <code>GET /cep/01310100</code> percorre, em ordem, as seguintes camadas e para na primeira que responde:
       </p>
       <ol>
@@ -174,13 +174,13 @@ async function buscarCep(cep) {
         como Next.js, uma Route Handler de dez linhas resolve.
       </p>
 
-      <h2 id="comparativo">Comparativo honesto: ViaCEP versus API de CEP da Retech Core</h2>
+      <h2 id="comparativo">Comparativo honesto: ViaCEP versus API de CEP do RetechHub</h2>
       <TableWrap caption="Comparação feita em outubro de 2026, a partir da documentação pública de cada serviço.">
         <thead>
           <tr>
             <th>Critério</th>
             <th>ViaCEP</th>
-            <th>Retech Core</th>
+            <th>RetechHub</th>
           </tr>
         </thead>
         <tbody>
@@ -271,9 +271,9 @@ async function buscarCep(cep) {
         className="mt-14"
         items={[
           {
-            question: 'A API de CEP da Retech Core é compatível com o formato do ViaCEP?',
+            question: 'A API de CEP do RetechHub é compatível com o formato do ViaCEP?',
             answer:
-              'Sim. Os campos cep, logradouro, complemento, bairro, localidade, uf, ibge e ddd têm os mesmos nomes e formatos. A diferença é que a Retech Core devolve HTTP 404 para CEP inexistente e HTTP 400 para CEP malformado, em vez de um 200 com "erro": true. O campo source indica de qual camada ou fonte veio a resposta.',
+              'Sim. Os campos cep, logradouro, complemento, bairro, localidade, uf, ibge e ddd têm os mesmos nomes e formatos. A diferença é que o RetechHub devolve HTTP 404 para CEP inexistente e HTTP 400 para CEP malformado, em vez de um 200 com "erro": true. O campo source indica de qual camada ou fonte veio a resposta.',
           },
           {
             question: 'O que acontece se o ViaCEP estiver fora do ar?',

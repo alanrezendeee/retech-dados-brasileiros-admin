@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
       url,
       title: post.title,
       description: post.description,
-      siteName: 'Retech Core',
+      siteName: 'RetechHub',
       locale: 'pt_BR',
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt,
@@ -132,7 +132,7 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
               Use esses dados na sua aplicação
             </h2>
             <p className="mt-2 text-slate-300">
-              A {category.apiLabel} da Retech Core tem plano gratuito com 100 requisições por dia, chave de API em segundos e
+              A {category.apiLabel} do RetechHub tem plano gratuito com 100 requisições por dia, chave de API em segundos e
               documentação com exemplos prontos. Sem cartão de crédito.
             </p>
             <div className="mt-5 flex flex-wrap gap-3">

@@ -114,7 +114,7 @@ print(response.json())`;
             Documentação da API
           </h1>
           <p className="text-slate-500 mt-1">
-            Como usar a Retech Core API
+            Como usar o RetechHub API
           </p>
         </div>
 

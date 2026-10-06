@@ -192,7 +192,7 @@ export default function PainelLayout({ children }: { children: React.ReactNode }
           {/* Footer do Sidebar */}
           <div className="mt-auto p-4 border-t border-slate-200 bg-slate-50">
             <div className="text-xs text-slate-500 text-center">
-              <p className="font-medium">Retech Core API</p>
+              <p className="font-medium">RetechHub API</p>
               <p className="mt-1">v1.0.0</p>
             </div>
           </div>

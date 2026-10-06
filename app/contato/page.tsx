@@ -51,7 +51,7 @@ export default function ContatoPage() {
     }, 500);
   };
 
-  const whatsappLink = `https://wa.me/55${whatsapp}?text=Olá! Gostaria de falar sobre a Retech Core API`;
+  const whatsappLink = `https://wa.me/55${whatsapp}?text=Olá! Gostaria de falar sobre o RetechHub API`;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">

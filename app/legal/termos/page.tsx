@@ -29,7 +29,7 @@ export default function TermosPage() {
         <Alert className="mb-8 border-blue-200 bg-blue-50">
           <Shield className="w-5 h-5" />
           <AlertDescription className="text-slate-700">
-            Ao usar a Retech Core API, você concorda com estes termos. Use as APIs de forma responsável, 
+            Ao usar o RetechHub API, você concorda com estes termos. Use as APIs de forma responsável, 
             respeitando os limites de rate limiting e sem práticas abusivas. Dados fornecidos "como estão" 
             a partir de fontes públicas confiáveis.
           </AlertDescription>
@@ -43,7 +43,7 @@ export default function TermosPage() {
             </CardHeader>
             <CardContent className="space-y-4 text-slate-700">
               <p>
-                Ao acessar ou usar a plataforma <strong>The Retech Core</strong> ("Serviço", "Plataforma", "APIs"), 
+                Ao acessar ou usar a plataforma <strong>The RetechHub</strong> ("Serviço", "Plataforma", "APIs"), 
                 operada por <strong>Alan Rezende</strong> ("Retech", "nós", "nosso"), você concorda em estar 
                 vinculado a estes Termos de Uso.
               </p>
@@ -123,7 +123,7 @@ export default function TermosPage() {
                 <strong>4.1. Dados "Como Estão" (As-Is)</strong>
               </p>
               <p>
-                Os dados fornecidos pela Retech Core são obtidos de <strong>fontes públicas confiáveis</strong> 
+                Os dados fornecidos pelo RetechHub são obtidos de <strong>fontes públicas confiáveis</strong> 
                 (ViaCEP, Brasil API, IBGE, Receita Federal, Legislação Brasileira) e fornecidos "COMO ESTÃO", sem garantias expressas ou 
                 implícitas de precisão, atualização ou completude.
               </p>
@@ -131,7 +131,7 @@ export default function TermosPage() {
                 <strong>4.2. Não Somos a Fonte Original</strong>
               </p>
               <p>
-                A Retech Core é um <strong>agregador e cache</strong> de dados públicos. Não somos a fonte original 
+                O RetechHub é um <strong>agregador e cache</strong> de dados públicos. Não somos a fonte original 
                 dos dados. A precisão depende da fonte (ViaCEP, Brasil API, etc.).
               </p>
               <p>
@@ -260,7 +260,7 @@ export default function TermosPage() {
                 <strong>8.2. Plataforma</strong>
               </p>
               <p>
-                A plataforma Retech Core (código, design, documentação, marca) é propriedade exclusiva de 
+                A plataforma RetechHub (código, design, documentação, marca) é propriedade exclusiva de 
                 Alan Rezende e está protegida por direitos autorais.
               </p>
               <p>
@@ -399,7 +399,7 @@ export default function TermosPage() {
           <Alert className="bg-green-50 border-green-200">
             <CheckCircle2 className="w-5 h-5 text-green-600" />
             <AlertDescription className="text-slate-700">
-              <strong>Ao usar a Retech Core API, você declara ter lido, compreendido e aceito estes Termos de Uso.</strong>
+              <strong>Ao usar o RetechHub API, você declara ter lido, compreendido e aceito estes Termos de Uso.</strong>
             </AlertDescription>
           </Alert>
         </div>

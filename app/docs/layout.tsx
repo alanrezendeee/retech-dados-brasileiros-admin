@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import { SITE_URL } from '@/lib/seo/site';
 
 export const metadata: Metadata = {
-  title: 'Documentação da API Retech Core: CEP, CNPJ, Geografia e Artigos Penais',
+  title: 'Documentação da API RetechHub: CEP, CNPJ, Geografia e Artigos Penais',
   description:
-    'Referência da API REST Retech Core: autenticação com X-API-Key, endpoints de CEP, CNPJ, geografia IBGE e artigos penais, parâmetros, exemplos em JSON, erros RFC 7807 e limites de uso.',
+    'Referência da API REST RetechHub: autenticação com X-API-Key, endpoints de CEP, CNPJ, geografia IBGE e artigos penais, parâmetros, exemplos em JSON, erros RFC 7807 e limites de uso.',
   keywords: [
     'documentação api cep',
     'api cep documentação',
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     'retech core docs',
   ],
   openGraph: {
-    title: 'Documentação da API Retech Core',
+    title: 'Documentação da API RetechHub',
     description:
       'Endpoints de CEP, CNPJ, geografia IBGE e artigos penais com parâmetros, exemplos em JSON e tratamento de erros.',
     type: 'article',
